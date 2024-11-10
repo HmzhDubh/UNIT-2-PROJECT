@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Merienda", cursive;
+            font-style: normal;
+
+        }
+        .rajdhani-light {
+          font-family: "Rajdhani", sans-serif;
+          font-weight: 300;
+          font-style: normal;
+        }
+
+        .rajdhani-regular {
+          font-family: "Rajdhani", sans-serif;
+          font-weight: 400;
+          font-style: normal;
+        }
+
+        .rajdhani-medium {
+          font-family: "Rajdhani", sans-serif;
+          font-weight: 500;
+          font-style: normal;
+        }
+
+        .rajdhani-semibold {
+          font-family: "Rajdhani", sans-serif;
+          font-weight: 600;
+          font-style: normal;
+        }
+
+        .rajdhani-bold {
+          font-family: "Rajdhani", sans-serif;
+          font-weight: 700;
+          font-style: normal;
+        }
+
+    </style>
+    {% block additional_styles %}
+    {% endblock %}
+
+</head>
+<body>
+    <header>
+        <div class="sticky-md-top border-bottom">
+            <div class="header-container ">
+                <div class="d-flex justify-content-evenly align-items-center m-4 p-2">
+                    <div class="d-flex align-items-center ">
+                        <a class="brand text-decoration-none align-items-center h1" href="/">HmzH</a>
+                        <h6 class="ps-3">Photographer / Developer</h6>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-center text-primary h4">
+                        <nav class="d-flex gap-3">
+                            <a href="#" class="nav-link ">Projects</a>
+                            <a href="{% url 'galleryApp:photos_view' %}" class="nav-link ">Photo Gallery</a>
+                            <a href="#" class="nav-link ">Expertise</a>
+                            <a href="#" class="nav-link ">Contact</a>
+                            <a href="#" class="nav-link ">Testimonial</a>
+                        </nav>
+
+                        <a href="#" class="btn btn-primary ms-4">
+                            Get In Touch Now <span class="get-started-arrow">↗</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    {% block main %}
+
+    {% endblock %}
+    <footer class="text-center text-lg-start">
+
+        <hr class="my-4" style="width:90%;margin: 0 auto;">
+        <div class="container p-4">
+            <div class="row">
+
+                <div class="col">
+                    <h5 class="text-uppercase mb-5">HmzH Portfolio</h5>
+                    <div class="col pt-5">
+                        <i class="fa fa-facebook pe-2" style="font-size:30px"></i>
+                        <i class="fa fa-linkedin pe-2" style="font-size:30px"></i>
+                        <i class="fa fa-youtube pe-2" style="font-size:30px"></i>
+                        <i class="fa fa-instagram pe-2" style="font-size:30px"></i>
+                    </div>
+
+                </div>
+                {% block footer_link_section %}
+                <div class="col">
+                    <div class="row row-cols-1 row-cols-md-3 g-4">
+                        <div class="col">
+                            <h5>Plants</h5>
+                            <p><a href="/">Plants</a></p>
+                            <p><a href="/">Add Plant</a></p>
+                            <p><a href="/">Search for Plants</a></p>
+                        </div>
+                        <div class="col">
+                            <h5>Contact Us</h5>
+                            <p><a href="/">Send a message</a></p>
+                            <p><a href="/">View Messages</a></p>
+                            <p>3</p>
+                        </div>
+                        <div class="col">
+                            <h5>Links</h5>
+                            <p>1</p>
+                            <p>2</p>
+                            <p>3</p>
+                        </div>
+                    </div>
+                </div>
+                {% endblock %}
+
+            </div>
+        </div>
+
+        <div class="text-center text-light bg-dark p-3" >
+            © 2024 Copyright:
+            <a class="text-light" href="/">HmzH</a>
+        </div>
+
+    </footer>
+
+</body>
+</html>
