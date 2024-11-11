@@ -1,20 +1,25 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Gallery{% endblock %}
+{% block additional_styles %}
+    <style>
+        .row{
+            padding-right: 0;
+            padding-left: 0;
+        }
+    </style>
+{% endblock %}
 {% block main %}
 <main>
-    <div class="container-fluid">
-        <div class="row row-cols-1 row-cols-2">
-            <div class="row image-fluid">
-                <img src="https://i.pinimg.com/564x/54/7a/e2/547ae28ddd5c2f343861baf7ded372bb.jpg" style="width:100%;">
-            </div>
-            <div class="row">
-                <div class="card border-0">
-                    <h1>ddddddddddddddddddddddd</h1>
-                    <h1>ddddddddddddddddddddddd</h1>
-                    <h1>ddddddddddddddddddddddd</h1>
-                    <h1>ddddddddddddddddddddddd</h1>
+    <div class="">
+        <div class="row row-cols-1 row-cols-5 justify-content-center">
+
+            {% for photo in photos %}
+                <div class="row ">
+                    <a href="{% url 'galleryApp:photo_details_view' photo.id %}"><img src="{{photo.url.url}}" style="width:100%;"></a>
                 </div>
-            </div>
+            {% endfor %}
+
         </div>
     </div>
 </main>

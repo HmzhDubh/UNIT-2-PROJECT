@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Add Project {% endblock %}
+
+{% block main %}
+
+<main>
+    <div class="container p-5">
+        <div class="row row-cols-1 row-cols-md-2 g-5 h-100 justify-content-center">
+            <div class="col">
+                <h1>Update Project</h1>
+                <p>Complete Project Information Bellow</p>
+                <form action="{% url 'projectsApp:update_project_view' project.id %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="col">
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class="form-label" for="title">Project Title</label>
+                                <input type="text" id="title" name="title" value="{{project.title}}" class="form-control" placeholder="SWE" required/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class="form-label" for="about">Describe The Project</label>
+                                <input type="text" id="about" name="about" value="{{project.about}}" class="form-control" placeholder="Front-End Project..." required/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col form-outline mb-4">
+                        <label class="form-label" for="type">Project Type</label>
+                        <select class="form-select" id="type" name="type" required>
+                            {% for cat, label in project_cats %}
+                            <option value="{{ cat }}" {% if project.type == cat %} selected {% endif %}>{{ label }}</option>
+                            {% endfor  %}
+                        </select>
+                    </div>
+
+                    <div class="col form-outline mb-4 text-center">
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="status" id="tstatus" value="True" {% if project.status %} checked {% endif %}>
+                            <label class="btn btn-outline-dark" for="tstatus">Complete</label>
+
+                            <input type="radio" class="btn-check" name="status" id="fstatus" value="False" {% if not project.status %} checked {% endif %}>
+                            <label class="btn btn-outline-dark" for="fstatus">In-Progress</label>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label" for="link">Project Link</label>
+                            <input type="text" id="link" name="link" value="{{project.link}}" class="form-control" placeholder="Jeddah" required/>
+                        </div>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <label class="input-group-text bg-dark text-light" for="image">Upload Project Image</label>
+                        <input type="file" class="form-control bg-dark text-light" id="image" name="url" accept="image/*">
+                    </div>
+
+                    <div class="col d-grid">
+                        <button type="submit" class="btn btn-success btn-block p-2 mb-4">Update Project</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</main>
+{% endblock %}

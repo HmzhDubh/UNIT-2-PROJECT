@@ -51,24 +51,23 @@
 </head>
 <body>
     <header>
-        <div class="sticky-md-top border-bottom">
-            <div class="header-container ">
-                <div class="d-flex justify-content-evenly align-items-center m-4 p-2">
-                    <div class="d-flex align-items-center ">
-                        <a class="brand text-decoration-none align-items-center h1" href="/">HmzH</a>
-                        <h6 class="ps-3">Photographer / Developer</h6>
+        <div class="sticky-md-top">
+            <div class="header-container">
+                <div class="d-flex justify-content-between align-items-center m-4 p-2">
+                    <div class="d-flex align-items-center ms-5 ps-5">
+                        <a class="brand text-decoration-none align-items-center h1" style="color:#0ba6a1;" href="/">HmzH</a>
+                        <h6 class="ps-3" style="color:#0ba6a1;">Photographer / Developer</h6>
                     </div>
 
-                    <div class="d-flex align-items-center justify-content-center text-primary h4">
+                    <div class="d-flex align-items-center justify-content-center h4" style="color: #0ba6a1;">
                         <nav class="d-flex gap-3">
-                            <a href="#" class="nav-link ">Projects</a>
+                            <a href="{% url 'projectsApp:projects_view' %}" class="nav-link ">Projects</a>
                             <a href="{% url 'galleryApp:photos_view' %}" class="nav-link ">Photo Gallery</a>
-                            <a href="#" class="nav-link ">Expertise</a>
-                            <a href="#" class="nav-link ">Contact</a>
-                            <a href="#" class="nav-link ">Testimonial</a>
+                            <a href="/" class="nav-link ">Expertise</a>
+                            <a href="/" class="nav-link ">Testimonial</a>
                         </nav>
 
-                        <a href="#" class="btn btn-primary ms-4">
+                        <a href="/" class="btn ms-4" style="color: #0ba6a1; background-color:#a6340b; border-radius:25px">
                             Get In Touch Now <span class="get-started-arrow">↗</span>
                         </a>
                     </div>
@@ -79,7 +78,7 @@
     {% block main %}
 
     {% endblock %}
-    <footer class="text-center text-lg-start">
+    <footer class="text-center text-lg-start text-decoration-none" style="color: #0ba6a1;">
 
         <hr class="my-4" style="width:90%;margin: 0 auto;">
         <div class="container p-4">

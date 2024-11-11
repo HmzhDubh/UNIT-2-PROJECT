@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %} Projects {% endblock %}
+
+{% block main %}
+<main>
+    <div class="container row row-cols-1 row-cols-lg-3 p-5 m-5">
+        {% for project in projects %}
+        <div class="col">
+            <a href="{% url 'projectsApp:project_details_view' project.id %}" class="text-decoration-none ">
+                <div class="card h-100 border border-0">
+                    <img src="{{ project.image.url}}" class="card-img-top rounded" alt="..." style="height:14rem">
+                    <div class="card-body">
+                        <h5 class="card-title">{{project.title}}</h5>
+                        <p class="card-text text-secondary">{{project.about}}</p>
+                        <p class="card-text h5">{{project.type}}</p>
+                        <p class="card-text h6">Status: {% if project.status %} Complete {% else %} In-Progress {% endif %}</p>
+                        <p class="card-text h6">Link: {{ project.link }}</p>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}

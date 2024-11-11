@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Add Photo{% endblock %}
+
+{% block main %}
+
+<main>
+    <div class="container p-5">
+        <div class="row row-cols-1 row-cols-md-2 g-5 h-100 justify-content-center">
+            <div class="col">
+                <h1>Update New Photo</h1>
+                <p>Complete Photo Information Bellow</p>
+                <form action="{% url 'galleryApp:update_photo_view' photo.id %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="col">
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class="form-label" for="title">Photo Title</label>
+                                <input type="text" id="title" name="title" value="{{photo.title}}" class="form-control" placeholder="Guava" required/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class="form-label" for="about">Describe The Photo</label>
+                                <input type="text" id="about" name="about" value="{{photo.about}}" class="form-control" placeholder="Photo of Nature ..." required/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col form-outline mb-4">
+                        <label class="form-label" for="category">Photo Category</label>
+                        <select class="form-select" id="category" name="category" required>
+                            {% for cat, label in photo_cats %}
+                            <option value="{{ cat }}" {% if photo.category == cat %} selected {% endif %}>{{ label }}</option>
+                            {% endfor  %}
+                        </select>
+                    </div>
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label" for="photo_location">Photo Location</label>
+                            <input type="text" id="photo_location" value="{{ photo.photo_location }}" name="photo_location" class="form-control" placeholder="Jeddah" required/>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3 mt-3">
+                        <div class="d-flex justify-content-center mb-3">
+                            <img src="{{photo.url.url}}" style="width:20%;">
+                        </div>
+                        <label class="input-group-text bg-dark text-light" for="image">Upload Photo</label>
+                        <input type="file" class="form-control bg-dark text-light" id="image" name="url" accept="image/*">
+                    </div>
+                    <div class="date mb-3">
+                        <input type="date" value="{{ photo.captured_at.isoformat }}" name="captured_at">
+                    </div>
+
+                    <div class="col d-grid">
+                        <button type="submit" class="btn btn-success btn-block p-2 mb-4">Update Photo</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</main>
+{% endblock %}

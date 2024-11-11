@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} ERROR Page Not Found {% endblock %}
+
+{% block main %}
+<main>
+    <div class="container">
+        <div class="link">
+            <h1>Oops!</h1>
+
+            <h3>404. This is An Error </h3>
+            <h3>The Page you are looking for was not found</h3>
+            <h3>That's all we know</h3>
+        </div>
+        <img class="img rounded mx-100 d-block " src="{% static 'images/IMG_4261_jpg.jpg' %}">
+
+    </div>
+
+</main>
+
+{% endblock %}

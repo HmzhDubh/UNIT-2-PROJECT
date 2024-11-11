@@ -34,16 +34,21 @@ A personal website is website that represents you , your work , your career , yo
 - Wireframe (shared as link or uploaded as a file) - You can use Figma or similar online wireframing/design software.
 - UML (shared as a link or uploaded as a file) - You can use Lucid Charts or similar online UML design tool.
 
-## (Project Name)
-(project description here.)
+## (HmzH Portfolio)
+(Personal Portfolio website that shows my favorite interests in the world, Programming Projects and Photography, I will present my coding projects and Photos I took that is think it worth showing everybody .)
 
 ## Features List
-- (list of features)
+- Projects View
+- Photos View
+- Testimonials
+- Contact Me Page
+- Administration Dashboard for controlling models data (view, add, edit, and delete)
+- Expertise, a timeline of my expertise
 
 ## User Stories, Wireframes & UML links
-- (User stories document link here.)
-- (wireframe link here.)
-- (UML link here.)
+- [User Stories](https://excalidraw.com/#json=e0cknG2cPic-nydluZ_Yp,LvFpcGqtyWhhD8zE-cBY4w)
+- [User Stories](https://excalidraw.com/#json=e0cknG2cPic-nydluZ_Yp,LvFpcGqtyWhhD8zE-cBY4w)
+- [User Stories](https://excalidraw.com/#json=e0cknG2cPic-nydluZ_Yp,LvFpcGqtyWhhD8zE-cBY4w)
 
 
 ## Resources:
