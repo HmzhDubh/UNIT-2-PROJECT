@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Contact Us{% endblock %}
+
+{% block main %}
+
+<main>
+    <div class="container pt-5">
+        <div class="row row-cols-1 row-cols-md-2 g-5 justify-content-center">
+            <div class="col">
+                <h1 class="display-3">Contact Us</h1>
+                <h4>Fill the form bellow</h4>
+                <form class="mt-5" action="{% url 'main:contact_view' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="">
+                        <div class="">
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="first_name">First name</label>
+                                <input type="text" id="first_name" name="first_name" class="form-control" placeholder="Hmzh" required/>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="last_name">Last name</label>
+                                <input type="text" id="last_name" name="last_name" class="form-control" placeholder="Dubh" required/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Hmzhdubh@gmail.com" required/>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="subject">Message Subject</label>
+                        <input type="text" id="subject" name="subject" class="form-control" placeholder="Enter Your message subject" required>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="message">Message</label>
+                        <textarea id="message" name="message" class="form-control" placeholder="Enter Your message content here, Questions or Suggestion, or any message" required></textarea>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-dark btn-block p-2 mb-4">Send Message</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col mb-5">
+                <img class="rounded" src="{% static 'images/formImg.jpg' %}" style="width: 100%; height: 100%;">
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

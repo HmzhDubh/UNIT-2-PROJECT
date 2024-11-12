@@ -8,13 +8,17 @@ def projects_view(request: HttpRequest):
 
     projects = Project.objects.all()
     print(projects)
-    return render(request, 'projects.html', context={'projects': projects})
+    request = render(request, 'projects.html', context={'projects': projects})
+    request.set_cookie("active", "projects", max_age=60*60*24)
+    return request
 
 def project_details_view(request: HttpRequest, project_id):
 
     project = Project.objects.get(pk=project_id)
 
-    return render(request, 'project_details.html', context={'project': project})
+    request = render(request, 'project_details.html', context={'project': project})
+    request.set_cookie("active", "projects", max_age=60*60*24)
+    return request
 
 
 def add_projects_view(request: HttpRequest):
@@ -28,7 +32,9 @@ def add_projects_view(request: HttpRequest):
         else:
             print("Form is not Valid")
 
-    return render(request, 'add_project.html', context={'project_cats':Project.ProjectType.choices})
+    request = render(request, 'add_project.html', context={'project_cats':Project.ProjectType.choices})
+    request.set_cookie("active", "projects", max_age=60*60*24)
+    return request
 
 
 def update_project_view(request: HttpRequest, project_id: int):
@@ -40,17 +46,20 @@ def update_project_view(request: HttpRequest, project_id: int):
 
         if project_form.is_valid():
             project_form.save()
-            return redirect('projectsApp:project_details_view', project_id=project.id)
+            request = redirect('dashboard:dashboard_view', project_id=project.id)
+            request.set_cookie("active", "projects", max_age=60*60*24)
+            return request
 
-    return render(request, 'update_project.html', context={'project': project, 'project_cats': Project.ProjectType.choices})
-
+    request = render(request, 'update_project.html', context={'project': project, 'project_cats': Project.ProjectType.choices})
+    request.set_cookie("active", "projects", max_age=60*60*24)
+    return request
 
 def delete_project_view(request: HttpRequest, project_id: int):
     try:
 
         project = Project.objects.get(pk=project_id)
         project.delete()
-        return redirect('projectsApp:projects_view')
+        return redirect('dashboard:dashboard_view')
 
     except Exception as e:
         return render(request, 'page_not_found.html')

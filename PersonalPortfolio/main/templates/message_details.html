@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Photo Details{% endblock %}
+{% block main %}
+
+<main>
+
+    <div class="container row m-5 p-5 g-5">
+
+        <div class="col">
+            <div class="d-flex align-items-center">
+                <h1 class="display-4 pt-2">{{message.first_name}}{{message.last_name}}</h1>
+                <h5 class=" pt-2">{{message.email}}{{message.last_name}}</h5>
+
+            </div>
+
+            <h5>{{message.subject}}</h5>
+            <h5>{{message.message}}</h5>
+            <h5>{% if message.is_viewed %} Viewed {% else %} Not Viewed {% endif %}</h5>
+            <h6 class="pt-3">Sent At: {{message.created_at}}</h6>
+
+        </div>
+
+    </div>
+</main>
+{% endblock %}

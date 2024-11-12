@@ -20,7 +20,7 @@
             <h5>{{ project.about }}</h5>
 
             <h6 class="pt-3">Captured Status: {{project.status}}</h6>
-            <h6 class="pt-3">Link: {{ project.link }}</h6>
+            <a class="pt-3" href="{{ project.link }}" target="_blank">Project Link</a>
 
             <div class="container d-flex m-3 justify-content-end">
                 <a href="{% url 'projectsApp:update_project_view' project.id %}" type="button" class="btn btn-dark me-2">Edit </a>

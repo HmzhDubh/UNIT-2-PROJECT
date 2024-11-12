@@ -43,6 +43,26 @@
           font-weight: 700;
           font-style: normal;
         }
+        .special-color{
+            color: #0ba6a1;
+        }
+        .special-rounded-button{
+            background-color: #a6340b;
+            border-radius: 25px;
+        }.reversed-special-rounded-button{
+            background-color: #0ba6a1;
+            color: #a6340b;
+            border-radius: 25px;
+        }
+        .special-button{
+            background-color: #a6340b;
+        }
+        .active {
+            background-color: #a6340b;
+            border-radius: 15px;
+            padding: 4px;
+        }
+
 
     </style>
     {% block additional_styles %}
@@ -55,19 +75,19 @@
             <div class="header-container">
                 <div class="d-flex justify-content-between align-items-center m-4 p-2">
                     <div class="d-flex align-items-center ms-5 ps-5">
-                        <a class="brand text-decoration-none align-items-center h1" style="color:#0ba6a1;" href="/">HmzH</a>
-                        <h6 class="ps-3" style="color:#0ba6a1;">Photographer / Developer</h6>
+                        <a class="brand text-decoration-none align-items-center h1 special-color" href="/">HmzH</a>
+                        <h6 class="ps-3 special-color">Photographer / Developer</h6>
                     </div>
 
-                    <div class="d-flex align-items-center justify-content-center h4" style="color: #0ba6a1;">
-                        <nav class="d-flex gap-3">
-                            <a href="{% url 'projectsApp:projects_view' %}" class="nav-link ">Projects</a>
-                            <a href="{% url 'galleryApp:photos_view' %}" class="nav-link ">Photo Gallery</a>
-                            <a href="/" class="nav-link ">Expertise</a>
-                            <a href="/" class="nav-link ">Testimonial</a>
+                    <div class="d-flex align-items-center justify-content-center h5 special-color">
+                        <nav class="navbar d-flex gap-3">
+                            <a href="{% url 'projectsApp:projects_view' %}" class="nav-link {% if request.COOKIES.active == 'projects' %}active{% endif %}">Projects</a>
+                            <a href="{% url 'galleryApp:photos_view' %}" class="nav-link {% if request.COOKIES.active == 'gallery' %}active{% endif %}">Photo Gallery</a>
+                            <a href="/" class="nav-link {% if request.COOKIES.active == 'expertise' %}active{% endif %}">Expertise</a>
+                            <a href="/" class="nav-link {% if request.COOKIES.active == 'testimonial' %}active{% endif %}">Testimonial</a>
                         </nav>
 
-                        <a href="/" class="btn ms-4" style="color: #0ba6a1; background-color:#a6340b; border-radius:25px">
+                        <a href="{% url 'main:contact_view' %}" class="btn ms-4 special-color {% if request.COOKIES.active == 'contact' %}reversed-{% else %}special-rounded-button{% endif %} ">
                             Get In Touch Now <span class="get-started-arrow">↗</span>
                         </a>
                     </div>
@@ -78,7 +98,7 @@
     {% block main %}
 
     {% endblock %}
-    <footer class="text-center text-lg-start text-decoration-none" style="color: #0ba6a1;">
+    <footer class="text-center text-lg-start text-decoration-none special-color">
 
         <hr class="my-4" style="width:90%;margin: 0 auto;">
         <div class="container p-4">
