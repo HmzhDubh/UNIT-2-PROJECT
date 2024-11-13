@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+{% block title %}HmzH{% endblock %}
+{% block additional_styles %}
+<style>
+
+   .tech-stack {
+       display: flex;
+       flex-wrap: wrap;
+       gap: 8px;
+   }
+   .badge {
+       display: inline-flex;
+       align-items: center;
+       justify-content: center;
+       align-items-center;
+       color: white;
+       text-decoration: none;
+       text-align: center;
+   }
+
+</style>
+{% endblock %}
+
+{% block main %}
+<main>
+    <div class="d-flex pt-5 mt-5">
+        <div class="col-2 justify-content-center p-5 ">
+            <div class="list-group special-bg-color">
+
+                <a class="list-group-item list-group-item-action" href="#about_me">About Me</a>
+                <a class="list-group-item list-group-item-action" href="#skills">Skills</a>
+                <a class="list-group-item list-group-item-action" href="#tech-stack">Technical Stack</a>
+                <a class="list-group-item list-group-item-action" href="#contact">Contact Me</a>
+            </div>
+
+        </div>
+        <div class="main-content container w-100">
+
+            <div class="intro text-center justify-content-center">
+                <h1 class="display-1 special-color2">I'm Hmzh.</h1>
+                <h4 class="special-color2">Developer and Photographer.</h4>
+            </div> <!-- End of Introduction -->
+
+            <div id="about_me" class="ps-5 ms-5 pt-5 mt-5">
+                <h2 class="special-color2">About me</h2>
+                <hr style="width:200px">
+                <h4>My name is Hamzh Dubh, graduated from king abdulaziz university, Faculty of Computing and Information Technology,
+                    majored in Information Technology, specialized Software Engineering, I'm Skilled in Java and python, in addition to SQL DB and web design.
+                    I am interested in photography, and using Editing tools such as Lightroom and Photoshop. I have been working on several projects and applications,
+                    I participated in developing "breachyApp" and "myPayments" Applications. To contact me for any purpose, <a href="#contact">my contact information</a> are below. THANK YOU !.
+                </h4>
+            </div> <!-- End of about me -->
+            <div id="skills" class="ps-5 ms-5 mt-5 pt-2">
+                <h2 class="special-color2">Technical Skills</h2>
+                <hr style="width:200px">
+                <div class="row row-cols-1 row-cols-sm-5 g-5">
+
+                    <div class="w3-dark-grey">
+                        <p class="special-color2">Java And JavaScript</p>
+                        <div class="progress">
+                            <div class="progress-bar special-bg-color" style="height:28px;width:80%"></div>
+                        </div>
+                    </div>
+
+                    <div class="">
+                        <p class="special-color2">Python</p>
+                        <div class="progress">
+                            <div class="progress-bar special-bg-color" style="height:28px;width:60%"></div>
+                        </div>
+                    </div>
+
+                    <div class="w3-dark-grey">
+                        <p class="special-color2">web Development</p>
+                        <div class="progress">
+                            <div class="progress-bar special-bg-color" style="height:28px;width:80%"></div>
+                        </div>
+                    </div>
+
+                    <div class="w3-dark-grey">
+                        <p class="special-color2">Project Management</p>
+                        <div class="progress">
+                            <div class="progress-bar special-bg-color" style="height:28px;width:79%"></div>
+                        </div>
+                    </div>
+
+                    <div class="w3-dark-grey">
+                        <p class="special-color2">Cloud Computing</p>
+                        <div class="progress">
+                            <div class="progress-bar special-bg-color" style="height:28px;width:30%"></div>
+                        </div>
+                    </div>
+
+                    <div class="w3-dark-grey">
+                        <p class="special-color2">Back-End Development</p>
+                        <div class="progress">
+                            <div class="progress-bar special-bg-color" style="height:28px;width:40%"></div>
+                        </div>
+                    </div>
+
+                    <div class="w3-dark-grey">
+                        <p class="special-color2">Photography</p>
+                        <div class="progress">
+                            <div class="progress-bar special-bg-color" style="height:28px;width:90%"></div>
+                        </div>
+                    </div>
+
+                    <div class="w3-dark-grey">
+                        <p class="special-color2">Lightroom</p>
+                        <div class="progress">
+                            <div class="progress-bar special-bg-color" style="height:28px;width:90%"></div>
+                        </div>
+                    </div>
+
+                    <div class="w3-dark-grey">
+                        <p class="special-color2">Photoshop</p>
+                        <div class="progress ">
+                            <div class="progress-bar special-bg-color" style="height:28px;width:30%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- End of about me -->
+
+            <div id="tech-stack" class="ps-5 ms-5 pt-5 mt-5">
+                <h2 class="special-color2">Tech Stack 💻</h2>
+                <hr style="width:200px">
+
+                <div class="tech-stack">
+                    <a href="#" class="badge" style="background-color: #ED8B00;"><h6>Java</h6></a>
+                    <a href="#" class="badge" style="background-color: #E34F26;"><h6>HTML5</h6></a>
+                    <a href="#" class="badge" style="background-color: #1572B6;"><h6>CSS3</h6></a>
+                    <a href="#" class="badge" style="background-color: #121013;"><h6>Github Pages</h6></a>
+                    <a href="#" class="badge" style="background-color: #0072C6;"><h6>Azure</h6></a>
+                    <a href="#" class="badge" style="background-color: #039BE5;"><h6>Firebase</h6></a>
+                    <a href="#" class="badge" style="background-color: #000;"><h6>Flask</h6></a>
+                    <a href="#" class="badge" style="background-color: #02569B;"><h6>Flutter</h6></a>
+                    <a href="#" class="badge" style="background-color: #D42029;"><h6>Apache</h6></a>
+                    <a href="#" class="badge" style="background-color: #009639;"><h6>Nginx</h6></a>
+                    <a href="#" class="badge" style="background-color: #298729;"><h6>Gunicorn</h6></a>
+                    <a href="#" class="badge" style="background-color: #003545;"><h6>MariaDB</h6></a>
+                    <a href="#" class="badge" style="background-color: #316192;"><h6>Postgres</h6></a>
+                    <a href="#" class="badge" style="background-color: #4479A1;"><h6>MySQL</h6></a>
+                    <a href="#" class="badge" style="background-color: #00C4CC;"><h6>Canva</h6></a>
+                    <a href="#" class="badge" style="background-color: #F24E1E;"><h6>Figma</h6></a>
+                    <a href="#" class="badge" style="background-color: #657D8B;"><h6>Gimp</h6></a>
+                    <a href="#" class="badge" style="background-color: #31A8FF;"><h6>Adobe Lightroom</h6></a>
+                    <a href="#" class="badge" style="background-color: #161616;"><h6>CircleCI</h6></a>
+                    <a href="#" class="badge" style="background-color: #F05033;"><h6>Git</h6></a>
+                    <a href="#" class="badge" style="background-color: #121011;"><h6>GitHub</h6></a>
+                    <a href="#" class="badge" style="background-color: #0db7ed;"><h6>Docker</h6></a>
+                    <a href="#" class="badge" style="background-color: #0A0FFF;"><h6>Jira</h6></a>
+                    <a href="#" class="badge" style="background-color: #000000;"><h6>Prezi</h6></a>
+                    <a href="#" class="badge" style="background-color: #026AA7;"><h6>Trello</h6></a>
+                    <a href="#" class="badge" style="background-color: #000000;"><h6>Notion</h6></a>
+                    <a href="#" class="badge" style="background-color: #FF6C37;"><h6>Postman</h6></a>
+                    <a href="#" class="badge" style="background-color: #323330;"><h6>JavaScript</h6></a>
+                    <a href="#" class="badge" style="background-color: #777BB4;"><h6>PHP</h6></a>
+                    <a href="#" class="badge" style="background-color: #3670A0;"><h6>Python</h6></a>
+                    <a href="#" class="badge" style="background-color: #FFFFFF; color: #000;"><h6>OpenCV</h6></a>
+                    <a href="#" class="badge" style="background-color: #150458;"><h6>Pandas</h6></a>
+                </div>
+            </div> <!-- End of tech stack div -->
+
+            <div id="contact" class="ps-5 ms-5 pt-5 mt-5">
+
+
+                <div class="w3-padding-64 w3-content w3-text-grey special-color2" id="contact">
+                    <h2 class="w3-text-light-grey">Contact Me</h2>
+                    <hr style="width:200px">
+
+                    <div class="container">
+
+                        <a class="text-decoration-none special-color2" href="https://github.com/HmzhDubh" target="_blank"><p><i class="fa fa-github fa-fw w3-text-white w3-xxlarge w3-margin-right special-color2"></i> Github: HmzhDubh</p></a>
+                        <p><i class="fa fa-phone fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Phone: +966 544581821</p>
+                        <p><i class="fa fa-envelope fa-fw w3-text-white w3-xxlarge w3-margin-right"> </i> Email: hamza.helal.d@gmail.com</p>
+                        <a class="text-decoration-none special-color2" href="https://www.instagram.com/hhha.d" target="_blank"><p><i class="fa fa-instagram fa-fw w3-hover-opacity w3-text-white w3 w3-xxlarge w3-margin-right"></i> Instagram: @hhha.d</p></a>
+                        <p><i class="fa fa-map-marker fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Jeddah, Saudi Arabia</p>
+                    </div><br>
+
+
+                </div>
+
+            </div> <!-- End of about me -->
+
+        </div>
+        <div class="row p-5 m-5"></div>
+    </div>
+</main>
+{% endblock %}
+

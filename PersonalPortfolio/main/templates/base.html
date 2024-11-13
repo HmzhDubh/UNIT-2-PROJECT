@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,6 +47,12 @@
         .special-color{
             color: #0ba6a1;
         }
+        .special-bg-color{
+            background-color: #0ba6a1;
+
+        }.special-color2{
+            color: #a6340b;
+        }
         .special-rounded-button{
             background-color: #a6340b;
             border-radius: 25px;
@@ -56,6 +63,26 @@
         }
         .special-button{
             background-color: #a6340b;
+        }
+        .special-link{
+            background-color: #a6340b;
+            font-size: 25px;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 29px;
+            color: #0ba6a1;
+        }
+        .secondary-button {
+            background-color: #0ba6a1;
+            color: #a6340b;
+        }
+        .secondary-link {
+            background-color: #0ba6a1;
+            color: #a6340b;
+            padding: 7px;
+            font-size: 19px;
+            border-radius: 15px;
+            text-decoration: none
         }
         .active {
             background-color: #a6340b;
@@ -69,7 +96,7 @@
     {% endblock %}
 
 </head>
-<body>
+<body style="background-color:#f1faee">
     <header>
         <div class="sticky-md-top">
             <div class="header-container">
@@ -81,10 +108,10 @@
 
                     <div class="d-flex align-items-center justify-content-center h5 special-color">
                         <nav class="navbar d-flex gap-3">
-                            <a href="{% url 'projectsApp:projects_view' %}" class="nav-link {% if request.COOKIES.active == 'projects' %}active{% endif %}">Projects</a>
-                            <a href="{% url 'galleryApp:photos_view' %}" class="nav-link {% if request.COOKIES.active == 'gallery' %}active{% endif %}">Photo Gallery</a>
-                            <a href="/" class="nav-link {% if request.COOKIES.active == 'expertise' %}active{% endif %}">Expertise</a>
-                            <a href="/" class="nav-link {% if request.COOKIES.active == 'testimonial' %}active{% endif %}">Testimonial</a>
+                            <a href="{% url 'projectsApp:projects_view' %}" class="nav-link {% if request.resolver_match.view_name == 'projectsApp:projects_view' %}active{% endif %}">Projects</a>
+                            <a href="{% url 'galleryApp:photos_view' %}" class="nav-link {% if request.resolver_match.view_name == 'galleryApp:photos_view' %}active{% endif %}">Photo Gallery</a>
+                            <a href="{% url 'main:expertise_view' %}" class="nav-link {% if request.resolver_match.view_name == 'main:expertise_view' %}active{% endif %}">Expertise</a>
+                            <a href="{% url 'productsApp:products_view' %}" class="nav-link {% if request.resolver_match.view_name == 'productsApp:products_view' %}active{% endif %}">Products</a>
                         </nav>
 
                         <a href="{% url 'main:contact_view' %}" class="btn ms-4 special-color {% if request.COOKIES.active == 'contact' %}reversed-{% else %}special-rounded-button{% endif %} ">
@@ -118,22 +145,22 @@
                 <div class="col">
                     <div class="row row-cols-1 row-cols-md-3 g-4">
                         <div class="col">
-                            <h5>Plants</h5>
-                            <p><a href="/">Plants</a></p>
-                            <p><a href="/">Add Plant</a></p>
-                            <p><a href="/">Search for Plants</a></p>
+                            <h5>Pages</h5>
+                            <p><a href="{% url 'projectsApp:projects_view' %}">Projects</a></p>
+                            <p><a href="{% url 'galleryApp:photos_view' %}">Gallery</a></p>
+                            <p><a href="{% url 'main:expertise_view' %}">Expertise</a></p>
+                        </div>
+                        <div class="col">
+                            <h5>Products</h5>
+                            <p><a href="{% url 'productsApp:products_view' %}">View Products and Services</a></p>
+                            <p><a href="{% url 'productsApp:create_request_view' %}">New Request</a></p>
+                            <p><a href="{% url 'dashboard:dashboard_view' %}">Dashboard</a></p>
                         </div>
                         <div class="col">
                             <h5>Contact Us</h5>
-                            <p><a href="/">Send a message</a></p>
+                            <p><a href="{% url 'main:contact_view' %}">Send a message</a></p>
                             <p><a href="/">View Messages</a></p>
-                            <p>3</p>
-                        </div>
-                        <div class="col">
-                            <h5>Links</h5>
-                            <p>1</p>
-                            <p>2</p>
-                            <p>3</p>
+                            <p><a href="{% url 'main:testimonial_view' %}">Testimonial</a></p>
                         </div>
                     </div>
                 </div>

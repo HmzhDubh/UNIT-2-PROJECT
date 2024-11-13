@@ -9,7 +9,7 @@ def projects_view(request: HttpRequest):
     projects = Project.objects.all()
     print(projects)
     request = render(request, 'projects.html', context={'projects': projects})
-    request.set_cookie("active", "projects", max_age=60*60*24)
+
     return request
 
 def project_details_view(request: HttpRequest, project_id):
