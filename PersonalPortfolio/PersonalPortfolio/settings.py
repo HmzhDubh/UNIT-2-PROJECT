@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'galleryApp',
     'dashboard',
     'projectsApp',
+    'productsApp',
 ]
 
 MIDDLEWARE = [

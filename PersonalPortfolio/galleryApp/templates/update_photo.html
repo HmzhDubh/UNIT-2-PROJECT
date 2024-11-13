@@ -5,10 +5,12 @@
 {% block main %}
 
 <main>
+    <h1 class="display-6 text-center special-color pt-2">Update Photo</h1>
+    <hr class="special-color2" style="width:15%;margin: 0 auto;">
     <div class="container p-5">
         <div class="row row-cols-1 row-cols-md-2 g-5 h-100 justify-content-center">
             <div class="col">
-                <h1>Update New Photo</h1>
+                <h1>Update Photo</h1>
                 <p>Complete Photo Information Bellow</p>
                 <form action="{% url 'galleryApp:update_photo_view' photo.id %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}

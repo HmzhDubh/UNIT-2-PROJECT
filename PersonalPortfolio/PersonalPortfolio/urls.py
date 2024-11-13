@@ -25,4 +25,5 @@ urlpatterns = [
     path('gallery/', include('galleryApp.urls')),
     path('dashboard/', include('dashboard.urls')),
     path('projects/', include('projectsApp.urls')),
+    path('products/', include('productsApp.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
