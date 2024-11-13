@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}New Request{% endblock %}
+
+{% block main %}
+<main>
+    <h1 class="display-6 text-center special-color pt-2">Make a Request</h1>
+    <hr class="special-color2" style="width:19%;margin: 0 auto;">
+    <div class="container p-5">
+        <div class="row row-cols-1 row-cols-md-2 g-5 h-100 justify-content-center">
+            <div class="col">
+                <h1>Add New Request</h1>
+                <p>Complete Request Information Bellow</p>
+                <form action="{% url 'productsApp:create_request_view' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="col">
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class="form-label" for="title">Request Title</label>
+                                <input type="text" id="title" name="title" class="form-control" placeholder="Programming Project" required/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class="form-label" for="description">Describe The Request</label>
+                                <input type="text" id="description" name="description" class="form-control" placeholder="A Python CLI app that..." required/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col form-outline mb-4">
+                        <label class="form-label" for="category">Request Type</label>
+                        <select class="form-select" id="category" name="type" required>
+                            {% for cat, label in request_types %}
+                            <option value="{{ cat }}">{{ label }}</option>
+                            {% endfor  %}
+                        </select>
+                    </div>
+
+                    <div class="quantity">
+                        <label class="input-group-text bg-dark text-light" for="quantity">Quantity</label>
+                        <input id="quantity" type="number" name="quantity">
+                    </div>
+
+                    <div class="col d-grid">
+                        <button type="submit" class="btn btn-success btn-block p-2 mb-4" >Make Request</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</main>
+{% endblock %}

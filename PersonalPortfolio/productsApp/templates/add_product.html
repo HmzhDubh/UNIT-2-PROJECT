@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Product{% endblock %}
+
+{% block main %}
+    <main>
+    <h1 class="display-6 text-center special-color pt-2">Add Product</h1>
+    <hr class="special-color2" style="width:19%;margin: 0 auto;">
+    <div class="container p-5">
+        <div class="row row-cols-1 row-cols-md-2 g-5 h-100 justify-content-center">
+            <div class="col">
+                <h1>Add New Product</h1>
+                <p>Complete Product Information Bellow</p>
+                <form action="{% url 'productsApp:add_product_view' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="col">
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class="form-label" for="title">Product Title</label>
+                                <input type="text" id="title" name="title" class="form-control" placeholder="project" required/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class="form-label" for="description">Describe The Product</label>
+                                <input type="text" id="description" name="description" class="form-control" placeholder="Photo Session..." required/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col form-outline mb-4">
+                        <label class="form-label" for="category">Product Type</label>
+                        <select class="form-select" id="category" name="type" required>
+                            {% for cat, label in product_types %}
+                            <option value="{{ cat }}">{{ label }}</option>
+                            {% endfor  %}
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <label class="input-group-text bg-dark text-light" for="image">Upload Product Photo</label>
+                        <input type="file" class="form-control bg-dark text-light" id="image" name="url" accept="image/*" required>
+                    </div>
+                    <div class="quantity">
+                        <label class="input-group-text bg-dark text-light" for="quantity">Quantity</label>
+                        <input id="quantity" type="number" name="quantity">
+                    </div>
+
+                    <div class="col d-grid">
+                        <button type="submit" class="btn btn-success btn-block p-2 mb-4" >Add Product</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</main>
+{% endblock %}

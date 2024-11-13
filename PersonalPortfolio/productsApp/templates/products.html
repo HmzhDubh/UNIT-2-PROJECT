@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %} Products {% endblock %}
+
+{% block main %}
+<main>
+    <h1 class="display-6 text-center special-color pt-2">Products</h1>
+    <hr class="special-color2" style="width:15%;margin: 0 auto;">
+    <div class="container row row-cols-1 row-cols-lg-3 p-5 m-5">
+        {% for product in products %}
+        <div class="col">
+            <a href="{% url 'productsApp:product_details_view' product.id %}" class="text-decoration-none ">
+                <div class="card h-100 border border-0">
+                    <img src="{{ product.image.url}}" class="card-img-top rounded" alt="..." style="height:14rem">
+                    <div class="card-body">
+                        <h5 class="card-title">{{product.title}}</h5>
+                        <p class="card-text text-secondary">{{product.description}}</p>
+                        <p class="card-text h5">{{product.type}}</p>
+
+                        <p class="card-text h6">Link: {{ product.quantity }}</p>
+                        <p class="card-text h6">Link: {{ product.created_at }}</p>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}

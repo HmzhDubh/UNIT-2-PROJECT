@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Product{% endblock %}
+
+{% block main %}
+<main>
+    <h1 class="display-6 text-center special-color pt-2">Update Product</h1>
+    <hr class="special-color2" style="width:19%;margin: 0 auto;">
+    <div class="container p-5">
+        <div class="row row-cols-1 row-cols-md-2 g-5 h-100 justify-content-center">
+            <div class="col">
+                <h1>Update Product</h1>
+                <p>Complete Product Information Bellow</p>
+                <form action="{% url 'productsApp:update_product_view' product.id %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="col">
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class="form-label" for="title">Product Title</label>
+                                <input type="text" id="title" name="title" value="{{ product.title }}" class="form-control" placeholder="project" required/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class="form-label" for="description">Describe The Product</label>
+                                <input type="text" id="description" name="description" value="{{ product.description }}" class="form-control" placeholder="Photo Session..." required/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col form-outline mb-4">
+                        <label class="form-label" for="type">Product Type</label>
+                        <select class="form-select" id="type" name="type" required>
+                            {% for cat, label in product_types %}
+                            <option value="{{ cat }}" {% if product.type == cat %}selected{% endif %}>{{ label }}</option>
+                            {% endfor  %}
+                        </select>
+                    </div>
+                    <img class="m-2" src="{{ product.image.url }}" style="width:30%; height: 100px;">
+                    <div class="input-group mb-3">
+                        <label class="input-group-text bg-dark text-light" for="image">Upload Product Photo</label>
+                        <input type="file" class="form-control bg-dark text-light" id="image" name="url" accept="image/*" >
+                    </div>
+                    <div class="quantity">
+                        <label class="input-group-text bg-dark text-light" for="quantity">Quantity</label>
+                        <input id="quantity" type="number" value="{{ product.quantity }}" name="quantity">
+                    </div>
+
+                    <div class="col d-grid">
+                        <button type="submit" class="btn btn-success btn-block p-2 mb-4" >Update Product</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</main>
+{% endblock %}

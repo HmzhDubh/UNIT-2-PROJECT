@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %} Requests {% endblock %}
+
+{% block main %}
+<main>
+    <h1 class="display-6 text-center special-color pt-2">Requests</h1>
+    <hr class="special-color2" style="width:15%;margin: 0 auto;">
+    <div class="container row row-cols-1 row-cols-lg-3 p-5 m-5">
+        {% for the_request in requests %}
+        <div class="col">
+            <a href="{% url 'productsApp:request_details_view' the_request.id %}" class="text-decoration-none ">
+                <div class="card h-100 border border-0">
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{the_request.title}}</h5>
+                        <p class="card-text text-secondary">{{the_request.description}}</p>
+                        <p class="card-text h5">{{the_request.type}}</p>
+
+                        <p class="card-text h6">Link: {{ the_request.quantity }}</p>
+                        <p class="card-text h6">Link: {{ the_request.ordered_at }}</p>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}
