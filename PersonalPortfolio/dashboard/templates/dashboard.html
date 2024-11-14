@@ -5,19 +5,19 @@
     <h1 class="display-6 text-center special-color pt-2">Dashboard</h1>
     <hr class="special-color2" style="width:15%;margin: 0 auto;">
     <div class="container-fluid p-5 d-flex">
-
-        <div class="col nav-bar p-5 me-5 align-items-center shadow rounded">
+        <div class="col h-100">
+        <div class="nav-bar p-5 me-5 list-group align-items-center shadow rounded ">
             <form class="text-center" action="{% url 'dashboard:dashboard_view' %}" method="get">
-                <button type="submit" name='data'  value="All" class="m-1 btn special-color {% if request.GET.data == 'All' %} special-button {% else %}btn-light{% endif %}"> All </button>
-                <button type="submit" name='data' value="Photos" class="m-1 btn special-color {% if request.GET.data == 'Photos' %} special-button {% else %}btn-light{% endif %}"> Photos </button>
-                <button type="submit" name='data'  value="Projects" class="m-1 special-color btn {% if request.GET.data == 'Projects' %} special-button {% else %}btn-light{% endif %}"> Projects </button>
-                <button type="submit" name='data'  value="Products" class="m-1 special-color btn {% if request.GET.data == 'Products' %} special-button {% else %}btn-light{% endif %}"> Products </button>
-                <button type="submit" name='data'  value="Requests" class="m-1 special-color btn {% if request.GET.data == 'Requests' %} special-button {% else %}btn-light{% endif %}"> Requests </button>
-                <button type="submit" name='data' value="Messages" class="m-1 special-color btn {% if request.GET.data == 'Messages' %} special-button {% else %}btn-light{% endif %}"> Messages </button>
+                <button type="submit" name='data'  value="All" class="list-group-item m-1 btn special-color {% if request.GET.data == 'All' %} special-button {% else %}btn-light{% endif %}"> All </button>
+                <button type="submit" name='data' value="Photos" class="list-group-item m-1 btn special-color {% if request.GET.data == 'Photos' %} special-button {% else %}btn-light{% endif %}"> Photos </button>
+                <button type="submit" name='data'  value="Projects" class="list-group-item m-1 special-color btn {% if request.GET.data == 'Projects' %} special-button {% else %}btn-light{% endif %}"> Projects </button>
+                <button type="submit" name='data'  value="Products" class="list-group-item m-1 special-color btn {% if request.GET.data == 'Products' %} special-button {% else %}btn-light{% endif %}"> Products </button>
+                <button type="submit" name='data'  value="Requests" class="list-group-item m-1 special-color btn {% if request.GET.data == 'Requests' %} special-button {% else %}btn-light{% endif %}"> Requests </button>
+                <button type="submit" name='data' value="Messages" class="list-group-item m-1 special-color btn {% if request.GET.data == 'Messages' %} special-button {% else %}btn-light{% endif %}"> Messages </button>
 
             </form>
         </div> <!-- End of Models Buttons Div -->
-
+        </div>
         <div class="container justify-content-end">
 
             <div class="container d-flex justify-content-between mb-3">
@@ -36,32 +36,34 @@
                             <form class="d-flex" action="{% url 'dashboard:dashboard_view' %}" method="get" >
                                 <select name="order_by" class="form-select d-flex special-color special-button text-light">
                                 <option>Sort</option>
-
                                 <option value="newest" {% if request.GET.order_by == 'newest' %}selected{% endif %}> Newest </option>
                                 <option value="oldest" {% if request.GET.order_by == 'oldest' %}selected{% endif %}> Oldest </option>
-                            </select>
+                                </select>
                                 <input type="submit" class="btn special-color special-button" value="Apply">
                             </form>
+
                             <!-- photos filtering -->
                             {% elif request.GET.data == 'Photos' %}
                             <form class="d-flex" action="{% url 'dashboard:dashboard_view' %}" method="get" >
                                 <input type="hidden" name='data' value="Photos">
                                 <select name="order_by" class="form-select d-flex special-color special-button text-light">
-                                    <option>Sort</option>
+                                    <option> Order By</option>
                                     <option value="newest" {% if request.GET.order_by == 'newest' %}selected{% endif %}> Newest </option>
                                     <option value="oldest" {% if request.GET.order_by == 'oldest' %}selected{% endif %}> Oldest </option>
                                 </select>
+
                                 <select name="category" class="form-select d-flex special-color special-button text-light">
-                                <option>Photo Category</option>
-                                {% for cat, label in photo_cats %}
+                                    <option>Photo Category</option>
+                                    {% for cat, label in photo_cats %}
 
-                                <option value="{{ cat }}">{{ label }}</option>
+                                    <option value="{{ cat }}">{{ label }}</option>
 
-                                {% endfor %}
+                                    {% endfor %}
 
-                            </select>
+                                </select>
                                 <input type="submit" class="btn special-color special-button" value="Apply">
                             </form>
+
                             <!-- Projects Filtering -->
                             {% elif request.GET.data == 'Projects' %}
                             <form class="d-flex" action="{% url 'dashboard:dashboard_view' %}" method="get" >
@@ -76,10 +78,16 @@
                                 </select>
                                 <input type="submit" class="btn special-color special-button" value="Apply">
                             </form>
-                            <!-- Projects Filtering -->
+
+                            <!-- Products Filtering -->
                             {% elif request.GET.data == 'Products' %}
                             <form class="d-flex" action="{% url 'dashboard:dashboard_view' %}" method="get" >
                                 <input type="hidden" name='data' value="Products">
+                                <select name="order_by" class="form-select d-flex special-color special-button text-light">
+                                    <option>Sort</option>
+                                    <option value="newest" {% if request.GET.order_by == 'newest' %}selected{% endif %}> Newest </option>
+                                    <option value="oldest" {% if request.GET.order_by == 'oldest' %}selected{% endif %}> Oldest </option>
+                                </select>
                                 <select name="category" class="form-select d-flex special-color special-button text-light">
                                     <option> Product Type </option>
                                     {% for cat, label in product_cat %}
@@ -90,10 +98,16 @@
                                 </select>
                                 <input type="submit" class="btn special-color special-button" value="Apply">
                             </form>
-                            <!-- Projects Filtering -->
+
+                            <!-- Requests Filtering -->
                             {% elif request.GET.data == 'Requests' %}
                             <form class="d-flex" action="{% url 'dashboard:dashboard_view' %}" method="get" >
                                 <input type="hidden" name='data' value="Requests">
+                                <select name="order_by" class="form-select d-flex special-color special-button text-light">
+                                    <option>Sort</option>
+                                    <option value="newest" {% if request.GET.order_by == 'newest' %}selected{% endif %}> Newest </option>
+                                    <option value="oldest" {% if request.GET.order_by == 'oldest' %}selected{% endif %}> Oldest </option>
+                                </select>
                                 <select name="category" class="form-select d-flex special-color special-button text-light">
                                     <option> Request Type </option>
                                     {% for cat, label in product_cat %}
@@ -104,6 +118,7 @@
                                 </select>
                                 <input type="submit" class="btn special-color special-button" value="Apply">
                             </form>
+
                             <!-- Massages Filtering -->
                             {% elif request.GET.data == 'Messages' %}
                             <form class="d-flex" action="{% url 'dashboard:dashboard_view' %}" method="get" >
@@ -134,7 +149,7 @@
 
                         <h5 class="special-color">Messages</h5>
                         <table class="table table-hover ">
-                            <thead>
+                            <thead class="text-center">
                             <th scope="col">#</th>
                             <th scope="col">Sender</th>
                             <th scope="col">Email</th>
@@ -143,7 +158,7 @@
                             <th scope="col">Status</th>
                             <th scope="col">Actions</th>
                             </thead>
-                            <tbody class="table-group-divider">
+                            <tbody class="table-group-divider text-center">
                             {% for message in messages %}
                             <tr>
                                 <th scope="row">{{message.id}}</th>
@@ -152,7 +167,7 @@
                                 <td> {{message.subject}}</td>
                                 <td>{{message.created_at}}</td>
                                 <td>{% if message.is_viewed %} Viewed {% else %} Not Viewed {% endif %}</td>
-                                <td>
+                                <td class="text-end pe-1">
                                     <a href="{% url 'main:message_details_view' message.id %}" class="btn {% if message.is_viewed %} btn-success {% else %} btn-info {% endif %}"><span class="material-symbols-outlined">visibility</span></a>
                                     <a href="{% url 'main:delete_message_view' message.id %}" class="btn btn-danger"><span class="material-symbols-outlined"><span class="material-symbols-outlined">delete</span></span></a>
                                 </td>
@@ -166,27 +181,25 @@
                     {% if projects %}
                         <h5 class="special-color">Projects</h5>
                         <table class="table table-hover ">
-                        <thead>
+                        <thead class="text-center">
                         <th scope="col">#</th>
                         <th scope="col">Title</th>
-                        <th scope="col" style="width:50%">about</th>
-                        <th scope="col">type</th>
-                        <th scope="col">status</th>
-                        <th scope="col">Link</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Status</th>
+                        <th scope="col" style="width: 30%;">Link</th>
                         <th scope="col">Actions</th>
 
 
                         </thead>
-                        <tbody class="table-group-divider">
+                        <tbody class="table-group-divider text-center">
                         {% for project in projects %}
                         <tr>
                             <th scope="row">{{project.id}}</th>
                             <td>{{project.title}}</td>
-                            <td>{{project.about}}</td>
                             <td> {{project.type}}</td>
                             <td>{% if project.status %} Complete {% else %} In Progress {% endif %}</td>
-                            <td>{{project.link}}</td>
-                            <td>
+                            <td>{{ project.link }}</td>
+                            <td class="text-end pe-1">
                                 <a href="{% url 'projectsApp:project_details_view' project.id %}" class="btn btn-success"><span class="material-symbols-outlined">visibility</span></a>
                                 <a href="{% url 'projectsApp:update_project_view' project.id %}" class="btn btn-warning "><span class="material-symbols-outlined">edit</span></a>
                                 <a href="{% url 'projectsApp:delete_project_view' project.id %}" class="btn btn-danger "><span class="material-symbols-outlined">delete</span></a>
@@ -201,7 +214,7 @@
                     {% if products %}
                         <h5 class="special-color">Products</h5>
                         <table class="table table-hover ">
-                        <thead>
+                        <thead class="text-center">
                         <th scope="col">#</th>
                         <th scope="col">Title</th>
                         <th scope="col">type</th>
@@ -211,7 +224,7 @@
 
 
                         </thead>
-                        <tbody class="table-group-divider">
+                        <tbody class="table-group-divider text-center">
                         {% for product in products %}
                         <tr>
                             <th scope="row">{{product.id}}</th>
@@ -219,7 +232,7 @@
                             <td> {{product.type}}</td>
                             <td> {{product.quantity}}</td>
                             <td>{{product.created_at}}</td>
-                            <td class="text-end">
+                            <td class="text-end pe-1">
                                 <a href="{% url 'productsApp:product_details_view' product.id %}" class="btn btn-success"><span class="material-symbols-outlined">visibility</span></a>
                                 <a href="{% url 'productsApp:update_product_view' product.id %}" class="btn btn-warning "><span class="material-symbols-outlined">edit</span></a>
                                 <a href="{% url 'productsApp:delete_product_view' product.id %}" class="btn btn-danger "><span class="material-symbols-outlined">delete</span></a>
@@ -234,17 +247,17 @@
                     {% if requests %}
                     <h5 class="special-color">Requests</h5>
                     <table class="table table-hover ">
-                        <thead>
+                        <thead class="text-center">
                         <th scope="col">#</th>
                         <th scope="col">Title</th>
                         <th scope="col">type</th>
                         <th scope="col">quantity</th>
                         <th scope="col">Order Date</th>
-                        <th scope="col" class="text-end pe-5">Actions</th>
+                        <th scope="col" class="text-center pe-5">Actions</th>
 
 
                         </thead>
-                        <tbody class="table-group-divider">
+                        <tbody class="table-group-divider text-center">
                         {% for request in requests %}
                         <tr>
                             <th scope="row">{{request.id}}</th>
@@ -264,19 +277,18 @@
                     {% endif %}
 
                     {% if photos %}
-
                         <h5 class="special-color">Photos</h5>
                         <table class="table table-hover">
-                            <thead>
+                            <thead class="text-center">
                                 <th scope="col">#</th>
                                 <th scope="col">Title</th>
-                                <th scope="col" style="width:40%;">About</th>
+                                <th scope="col" style="width:20%;">About</th>
                                 <th scope="col">Category</th>
                                 <th scope="col">Location</th>
                                 <th scope="col">Date</th>
-                                <th scope="col"> Actions </th>
+                                <th class="text-center"> Actions </th>
                             </thead>
-                            <tbody class="table-group-divider">
+                            <tbody class="table-group-divider text-center">
                                 {% for photo in photos %}
                                 <tr>
                                     <th scope="row">{{photo.id}}</th>
@@ -285,7 +297,7 @@
                                     <td>{{photo.category}}</td>
                                     <td>{{photo.photo_location}}</td>
                                     <td>{{photo.captured_at}}</td>
-                                    <td>
+                                    <td class="text-end">
                                         <a href="{% url 'galleryApp:photo_details_view' photo.id %}" class="btn btn-success"><span class="material-symbols-outlined">visibility</span></a>
                                         <a href="{% url 'galleryApp:update_photo_view' photo.id %}" class="btn btn-warning"><span class="material-symbols-outlined">edit</span></a>
                                         <a href="{% url 'galleryApp:delete_photo_view' photo.id %}" class="btn btn-danger"><span class="material-symbols-outlined">delete</span></a>

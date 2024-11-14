@@ -8,7 +8,7 @@
     <h1 class="display-6 text-center special-color pt-2">Add New Photo</h1>
     <hr class="special-color2" style="width:19%;margin: 0 auto;">
     <div class="container p-5">
-        <div class="row row-cols-1 row-cols-md-2 g-5 h-100 justify-content-center">
+        <div class="row row-cols-1 row-cols-md-2 g-5 h-100 justify-content-center special-color2">
             <div class="col">
                 <h1>Add New Photo</h1>
                 <p>Complete Photo Information Bellow</p>
@@ -16,15 +16,15 @@
                     {% csrf_token %}
                     <div class="col">
                         <div class="col">
-                            <div class="form-outline">
+                            <div class="form-outline mb-4">
                                 <label class="form-label" for="title">Photo Title</label>
-                                <input type="text" id="title" name="title" class="form-control" placeholder="Guava" required/>
+                                <input type="text" id="title" name="title" class="form-control" placeholder="Guava" maxlength="20" required/>
                             </div>
                         </div>
                         <div class="col">
-                            <div class="form-outline">
+                            <div class="form-outline mb-4">
                                 <label class="form-label" for="about">Describe The Photo</label>
-                                <input type="text" id="about" name="about" class="form-control" placeholder="Photo of Nature ..." required/>
+                                <input type="text" id="about" name="about" class="form-control" placeholder="Photo of Nature ..." maxlength="120" required/>
                             </div>
                         </div>
                     </div>
@@ -44,16 +44,17 @@
                         </div>
                     </div>
 
-                    <div class="input-group mb-3">
-                        <label class="input-group-text bg-dark text-light" for="image">Upload Photo</label>
-                        <input type="file" class="form-control bg-dark text-light" id="image" name="url" accept="image/*" required>
+                    <div class="input-group mt-3 mb-3">
+                        <label class="input-group-text special-bg-color special-color2" for="image">Upload Photo</label>
+                        <input type="file" class="form-control special-bg-color special-color2 special-color2" id="image" name="url" accept="image/*" required>
                     </div>
-                    <div class="date">
-                        <input type="date" name="captured_at">
+                    <div class="date text-center pb-3 justify-content-center">
+                        <label class="" for="date">Captured At</label>
+                        <input class="p-1 rounded" id=date type="date" name="captured_at">
                     </div>
 
                     <div class="col d-grid">
-                        <button type="submit" class="btn btn-success btn-block p-2 mb-4" >Add Photo</button>
+                        <button type="submit" class="btn special-button special-color btn-block p-2 mb-4" >Add Photo</button>
                     </div>
 
                 </form>

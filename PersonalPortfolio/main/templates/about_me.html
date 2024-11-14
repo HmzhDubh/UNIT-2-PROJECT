@@ -22,37 +22,37 @@
 {% endblock %}
 
 {% block main %}
-<main>
-    <div class="d-flex pt-5 mt-5">
-        <div class="col-2 justify-content-center p-5 ">
-            <div class="list-group special-bg-color">
+<main class="main_about_me">
 
-                <a class="list-group-item list-group-item-action" href="#about_me">About Me</a>
-                <a class="list-group-item list-group-item-action" href="#skills">Skills</a>
-                <a class="list-group-item list-group-item-action" href="#tech-stack">Technical Stack</a>
-                <a class="list-group-item list-group-item-action" href="#contact">Contact Me</a>
-            </div>
-
-        </div>
         <div class="main-content container w-100">
 
-            <div class="intro text-center justify-content-center">
-                <h1 class="display-1 special-color2">I'm Hmzh.</h1>
+            <div class="intro text-center justify-content-center pt-5">
+                <h1 class="display-1 light-special-color">I'm Hmzh.</h1>
                 <h4 class="special-color2">Developer and Photographer.</h4>
             </div> <!-- End of Introduction -->
 
-            <div id="about_me" class="ps-5 ms-5 pt-5 mt-5">
-                <h2 class="special-color2">About me</h2>
-                <hr style="width:200px">
-                <h4>My name is Hamzh Dubh, graduated from king abdulaziz university, Faculty of Computing and Information Technology,
+            <div class="pt-5 align-items-center">
+                <div class="d-flex justify-content-center gap-5 special-color2">
+                    <a class="h4 text-decoration-none" href="#about_me">About Me</a>
+                    <a class="h4 text-decoration-none" href="#skills">Skills</a>
+                    <a class="h4 text-decoration-none" href="#tech-stack">Technical Stack</a>
+                    <a class="h4 text-decoration-none" href="#contact">Contact Me</a>
+                </div>
+
+            </div> <!-- nav -->
+
+            <div id="about_me" class="ps-5 ms-5 mt-5">
+                <h2 class="light-special-color display-2">About me</h2>
+                <hr class="special-color2" style="width:280px">
+                <h4 class="special-color2 pt-3">My name is Hamzh Dabbah, graduated from king abdulaziz university, Faculty of Computing and Information Technology,
                     majored in Information Technology, specialized Software Engineering, I'm Skilled in Java and python, in addition to SQL DB and web design.
                     I am interested in photography, and using Editing tools such as Lightroom and Photoshop. I have been working on several projects and applications,
-                    I participated in developing "breachyApp" and "myPayments" Applications. To contact me for any purpose, <a href="#contact">my contact information</a> are below. THANK YOU !.
+                    I participated in developing <a class="text-decoration-none special-color" href="/projects/project/9/details">"BreachyApp"</a> and <a class="text-decoration-none special-color" href="/projects/project/10/details">"EcoPlate"</a> Applications. To contact me for any purpose, <a class="text-decoration-none special-color" href="#contact">my contact information</a> are below. THANK YOU !.
                 </h4>
             </div> <!-- End of about me -->
             <div id="skills" class="ps-5 ms-5 mt-5 pt-2">
-                <h2 class="special-color2">Technical Skills</h2>
-                <hr style="width:200px">
+                <h2 class="light-special-color display-2">Technical Skills</h2>
+                <hr class="special-color2" style="width:460px">
                 <div class="row row-cols-1 row-cols-sm-5 g-5">
 
                     <div class="w3-dark-grey">
@@ -121,10 +121,10 @@
             </div> <!-- End of about me -->
 
             <div id="tech-stack" class="ps-5 ms-5 pt-5 mt-5">
-                <h2 class="special-color2">Tech Stack 💻</h2>
-                <hr style="width:200px">
+                <h2 class="light-special-color display-2">Tech Stack</h2>
+                <hr class="special-color2" style="width:320px">
 
-                <div class="tech-stack">
+                <div class="tech-stack pt-3">
                     <a href="#" class="badge" style="background-color: #ED8B00;"><h6>Java</h6></a>
                     <a href="#" class="badge" style="background-color: #E34F26;"><h6>HTML5</h6></a>
                     <a href="#" class="badge" style="background-color: #1572B6;"><h6>CSS3</h6></a>
@@ -163,9 +163,9 @@
             <div id="contact" class="ps-5 ms-5 pt-5 mt-5">
 
 
-                <div class="w3-padding-64 w3-content w3-text-grey special-color2" id="contact">
-                    <h2 class="w3-text-light-grey">Contact Me</h2>
-                    <hr style="width:200px">
+                <div class="w3-padding-64 w3-content w3-text-grey special-color2">
+                    <h2 class="display-2 light-special-color">Contact Me</h2>
+                    <hr style="width:340px">
 
                     <div class="container">
 
@@ -183,7 +183,7 @@
 
         </div>
         <div class="row p-5 m-5"></div>
-    </div>
+
 </main>
 {% endblock %}
 

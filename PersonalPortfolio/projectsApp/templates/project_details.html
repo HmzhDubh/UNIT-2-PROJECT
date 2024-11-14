@@ -21,7 +21,7 @@
 
             <h5>{{ project.about }}</h5>
 
-            <h6 class="pt-3">Captured Status: {{project.status}}</h6>
+            <h6 class="pt-3">Project Status: {% if project.status %} Complete {% else %} In-Progress {% endif %}</h6>
             <a class="pt-3" href="{{ project.link }}" target="_blank">Project Link</a>
 
             <div class="container d-flex m-3 justify-content-end">

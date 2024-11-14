@@ -13,7 +13,7 @@ class Project(models.Model):
 
     title = models.CharField(max_length=50)
     about = models.TextField()
-    image = models.ImageField(upload_to='projects/', default='images/default.jpg')
+    image = models.ImageField(upload_to='images/', default='images/default.jpg')
     type = models.CharField(max_length=120, choices=ProjectType.choices)
     status = models.BooleanField(default=True)
     link = models.CharField(max_length=1024)

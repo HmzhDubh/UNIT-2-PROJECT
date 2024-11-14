@@ -17,7 +17,7 @@ def dashboard_view(request: HttpRequest):
     photos = Photo.objects.all()
     requests = Request.objects.all()
 
-    # order models as newest or oldes
+    # order models as newest or oldest
     if 'order_by' in request.GET:
 
         if request.GET['order_by'] == 'newest':
@@ -45,8 +45,10 @@ def dashboard_view(request: HttpRequest):
         products = Product.objects.filter(type=request.GET['category'])
 
     elif 'category' in request.GET and request.GET['data'] == 'Messages':
-        messages = Contact.objects.filter(is_viewed=request.GET['category'])
-
+        if request.GET['category'] == True or request.GET['category'] == False:
+            messages = Contact.objects.filter(is_viewed=request.GET['category'])
+        else:
+            print(type(request.GET['category']))
     elif 'category' in request.GET and request.GET['data'] == 'Requests':
         requests = Contact.objects.filter(type=request.GET['category'])
 

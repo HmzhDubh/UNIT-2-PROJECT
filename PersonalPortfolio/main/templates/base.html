@@ -9,56 +9,35 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <style>
-        body {
+        header {
             font-family: "Merienda", cursive;
             font-style: normal;
 
         }
-        .rajdhani-light {
-          font-family: "Rajdhani", sans-serif;
-          font-weight: 300;
-          font-style: normal;
-        }
+        body {
+            font-family: 'Poppins';
+            font-style: normal;
 
-        .rajdhani-regular {
-          font-family: "Rajdhani", sans-serif;
-          font-weight: 400;
-          font-style: normal;
-        }
-
-        .rajdhani-medium {
-          font-family: "Rajdhani", sans-serif;
-          font-weight: 500;
-          font-style: normal;
-        }
-
-        .rajdhani-semibold {
-          font-family: "Rajdhani", sans-serif;
-          font-weight: 600;
-          font-style: normal;
-        }
-
-        .rajdhani-bold {
-          font-family: "Rajdhani", sans-serif;
-          font-weight: 700;
-          font-style: normal;
         }
         .special-color{
             color: #0ba6a1;
         }
+        .light-special-color{
+            color: #6dcac7;
+        }
         .special-bg-color{
             background-color: #0ba6a1;
-
-        }.special-color2{
+        }
+        .special-bg-color2{
+            background-color: #a6340b;
+        }
+        .special-color2{
             color: #a6340b;
         }
         .special-rounded-button{
             background-color: #a6340b;
-            border-radius: 25px;
-        }.reversed-special-rounded-button{
-            background-color: #0ba6a1;
-            color: #a6340b;
             border-radius: 25px;
         }
         .special-button{
@@ -79,9 +58,6 @@
         .secondary-link {
             background-color: #0ba6a1;
             color: #a6340b;
-            padding: 7px;
-            font-size: 19px;
-            border-radius: 15px;
             text-decoration: none
         }
         .active {
@@ -89,7 +65,47 @@
             border-radius: 15px;
             padding: 4px;
         }
+        .slide-left {
+            animation: slide-left 0.5s ease-out;
+        }
 
+        .slide-right {
+            animation: slide-right 0.5s ease-out;
+        }
+
+        @keyframes slide-left {
+            0% {
+                transform: translateX(-500%);
+            }20% {
+                transform: translateX(-400%);
+            }40% {
+                transform: translateX(-300%);
+            }60% {
+                transform: translateX(-200%);
+            }80% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slide-right {
+           0% {
+                transform: translateX(500%);
+            }20% {
+                transform: translateX(400%);
+            }40% {
+                transform: translateX(300%);
+            }60% {
+                transform: translateX(200%);
+            }80% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
 
     </style>
     {% block additional_styles %}
@@ -98,30 +114,39 @@
 </head>
 <body style="background-color:#f1faee">
     <header>
-        <div class="sticky-md-top">
-            <div class="header-container">
-                <div class="d-flex justify-content-between align-items-center m-4 p-2">
-                    <div class="d-flex align-items-center ms-5 ps-5">
-                        <a class="brand text-decoration-none align-items-center h1 special-color" href="/">HmzH</a>
-                        <h6 class="ps-3 special-color">Photographer / Developer</h6>
-                    </div>
-
-                    <div class="d-flex align-items-center justify-content-center h5 special-color">
-                        <nav class="navbar d-flex gap-3">
-                            <a href="{% url 'projectsApp:projects_view' %}" class="nav-link {% if request.resolver_match.view_name == 'projectsApp:projects_view' %}active{% endif %}">Projects</a>
-                            <a href="{% url 'galleryApp:photos_view' %}" class="nav-link {% if request.resolver_match.view_name == 'galleryApp:photos_view' %}active{% endif %}">Photo Gallery</a>
-                            <a href="{% url 'main:expertise_view' %}" class="nav-link {% if request.resolver_match.view_name == 'main:expertise_view' %}active{% endif %}">Expertise</a>
-                            <a href="{% url 'productsApp:products_view' %}" class="nav-link {% if request.resolver_match.view_name == 'productsApp:products_view' %}active{% endif %}">Products</a>
-                        </nav>
-
-                        <a href="{% url 'main:contact_view' %}" class="btn ms-4 special-color {% if request.COOKIES.active == 'contact' %}reversed-{% else %}special-rounded-button{% endif %} ">
-                            Get In Touch Now <span class="get-started-arrow">↗</span>
+        <div class="sticky-top">
+            <div class="container">
+                <nav class="navbar navbar-expand-md px-5 py-5">
+                    <a class="navbar-brand text-decoration-none special-color slide-left display-1" href="/"><span class="h1">HmzH</span></a>
+                    <span class="navbar-text special-color pt-3 slide-left h6">Photographer / Developer</span>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                        <ul class="navbar-nav ">
+                            <li class="nav-item">
+                                <a class="nav-link special-color {% if request.resolver_match.view_name == 'projectsApp:projects_view' %}active{% endif %} slide-right" href="{% url 'projectsApp:projects_view' %}">Projects</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link special-color {% if request.resolver_match.view_name == 'galleryApp:photos_view' %}active{% endif %} slide-right" href="{% url 'galleryApp:photos_view' %}">Photo Gallery</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link special-color {% if request.resolver_match.view_name == 'main:expertise_view' %}active{% endif %} slide-right" href="{% url 'main:expertise_view' %}">Expertise</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link special-color {% if request.resolver_match.view_name == 'productsApp:products_view' %}active{% endif %} slide-right" href="{% url 'productsApp:products_view' %}">Products</a>
+                            </li>
+                        </ul>
+                        <a href="{% url 'main:contact_view' %}" class="btn special-bg-color2 special-color rounded-pill ms-md-3 slide-right">
+                            Get In Touch Now <span class="ms-2">↗</span>
                         </a>
                     </div>
-                </div>
+                </nav>
             </div>
         </div>
     </header>
+
+
     {% block main %}
 
     {% endblock %}
@@ -133,11 +158,11 @@
 
                 <div class="col">
                     <h5 class="text-uppercase mb-5">HmzH Portfolio</h5>
-                    <div class="col pt-5">
-                        <i class="fa fa-facebook pe-2" style="font-size:30px"></i>
-                        <i class="fa fa-linkedin pe-2" style="font-size:30px"></i>
-                        <i class="fa fa-youtube pe-2" style="font-size:30px"></i>
-                        <i class="fa fa-instagram pe-2" style="font-size:30px"></i>
+                    <div class="col pt-5 text-decoration-none special-color">
+                        <a class="special-color" href="https://github.com/HmzhDubh"><i class="fa fa-github pe-2" style="font-size:30px"></i></a>
+                        <a class="special-color" href="https://www.linkedin.com/in/hamzadubh"><i class="fa fa-linkedin pe-2" style="font-size:30px"></i></a>
+                        <a class="special-color" href="https://www.pinterest.com/hhha0d/"><i class="fa fa-pinterest pe-2" style="font-size:30px"></i></a>
+                        <a class="special-color" href="https://www.instagram.com/hhha.d"><i class="fa fa-instagram pe-2" style="font-size:30px"></i></a>
                     </div>
 
                 </div>

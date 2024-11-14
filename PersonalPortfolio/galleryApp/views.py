@@ -20,7 +20,7 @@ def add_photo_view(request: HttpRequest):
         photo_form = PhotoForm(request.POST, request.FILES)
         if photo_form.is_valid():
             photo_form.save()
-            return redirect('galleryApp:photos_view')
+            return redirect('dashboard:dashboard_view')
         else:
             print("Form is not Valid")
 

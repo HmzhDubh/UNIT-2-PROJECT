@@ -8,7 +8,7 @@
     <h1 class="display-6 text-center special-color pt-2">Add New Project</h1>
     <hr class="special-color2" style="width:20%;margin: 0 auto;">
     <div class="container p-5">
-        <div class="row row-cols-1 row-cols-md-2 g-5 h-100 justify-content-center">
+        <div class="row row-cols-1 row-cols-md-2 g-5 h-100 justify-content-center special-color2">
             <div class="col">
                 <h1>Add New Project</h1>
                 <p>Complete Project Information Bellow</p>
@@ -16,13 +16,13 @@
                     {% csrf_token %}
                     <div class="col">
                         <div class="col">
-                            <div class="form-outline">
+                            <div class="form-outline mb-4">
                                 <label class="form-label" for="title">Project Title</label>
                                 <input type="text" id="title" name="title" class="form-control" placeholder="Guava" required/>
                             </div>
                         </div>
                         <div class="col">
-                            <div class="form-outline">
+                            <div class="form-outline mb-4">
                                 <label class="form-label" for="about">Describe The Project</label>
                                 <input type="text" id="about" name="about" class="form-control" placeholder="Front-End Project..." required/>
                             </div>
@@ -51,17 +51,17 @@
                     <div class="col">
                         <div class="form-outline mb-4">
                             <label class="form-label" for="link">Project Link</label>
-                            <input type="text" id="link" name="link" class="form-control" placeholder="Jeddah" required/>
+                            <input type="text" id="link" name="link" class="form-control" placeholder="https://example.com/" required/>
                         </div>
                     </div>
 
                     <div class="input-group mb-3">
-                        <label class="input-group-text bg-dark text-light" for="image">Upload Project Image</label>
-                        <input type="file" class="form-control bg-dark text-light" id="image" name="url" multiple="multiple" accept="image/*" required>
+                        <label class="input-group-text special-bg-color special-color2" for="image">Upload Project Image</label>
+                        <input type="file" class="form-control special-bg-color special-color2" id="image" name="image" multiple="multiple" accept="image/*" required>
                     </div>
 
                     <div class="col d-grid">
-                        <button type="submit" class="btn btn-success btn-block p-2 mb-4">Add Project</button>
+                        <button type="submit" class="btn btn-block p-2 mb-4 special-button special-color">Add Project</button>
                     </div>
 
                 </form>

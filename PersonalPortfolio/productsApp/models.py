@@ -14,7 +14,7 @@ class Product(models.Model):
     title = models.CharField(max_length=120)
     description = models.TextField()
     type = models.CharField(max_length=50, choices=ProductType.choices)
-    image = models.ImageField(upload_to='products/', default="images/default.jpg")
+    image = models.ImageField(upload_to='images/', default="images/default.jpg")
     quantity = models.SmallIntegerField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
 

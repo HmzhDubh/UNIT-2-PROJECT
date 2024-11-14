@@ -11,13 +11,13 @@
 {% endblock %}
 {% block main %}
 <main>
-    <h1 class="display-6 text-center special-color pt-2">Photos</h1>
+    <h1 class="display-6 text-center special-color pt-5 mt-5">Photos</h1>
     <hr class="special-color2" style="width:15%;margin: 0 auto;">
-    <div class="">
+    <div class="mt-5">
         <div class="row row-cols-1 row-cols-5 justify-content-center">
 
             {% for photo in photos %}
-                <div class="row ">
+                <div class="row">
                     <a href="{% url 'galleryApp:photo_details_view' photo.id %}"><img src="{{photo.url.url}}" style="width:100%;"></a>
                 </div>
             {% endfor %}

@@ -9,7 +9,6 @@ def projects_view(request: HttpRequest):
     projects = Project.objects.all()
     print(projects)
     request = render(request, 'projects.html', context={'projects': projects})
-
     return request
 
 def project_details_view(request: HttpRequest, project_id):
@@ -17,7 +16,6 @@ def project_details_view(request: HttpRequest, project_id):
     project = Project.objects.get(pk=project_id)
 
     request = render(request, 'project_details.html', context={'project': project})
-    request.set_cookie("active", "projects", max_age=60*60*24)
     return request
 
 
@@ -33,7 +31,6 @@ def add_projects_view(request: HttpRequest):
             print("Form is not Valid")
 
     request = render(request, 'add_project.html', context={'project_cats':Project.ProjectType.choices})
-    request.set_cookie("active", "projects", max_age=60*60*24)
     return request
 
 
@@ -46,12 +43,10 @@ def update_project_view(request: HttpRequest, project_id: int):
 
         if project_form.is_valid():
             project_form.save()
-            request = redirect('dashboard:dashboard_view', project_id=project.id)
-            request.set_cookie("active", "projects", max_age=60*60*24)
+            request = redirect('dashboard:dashboard_view')
             return request
 
     request = render(request, 'update_project.html', context={'project': project, 'project_cats': Project.ProjectType.choices})
-    request.set_cookie("active", "projects", max_age=60*60*24)
     return request
 
 def delete_project_view(request: HttpRequest, project_id: int):

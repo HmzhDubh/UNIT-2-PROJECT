@@ -22,7 +22,7 @@
             <h5>{{ product.description }}</h5>
 
             <h6 class="pt-3">Created At: {{product.created_at}}</h6>
-            <a class="pt-3" href="{{ product.quantity }}" target="_blank">Product Quantity</a>
+            <h6 class="pt-3">Product Quantity: {{ product.quantity }} </h6>
 
             <div class="container d-flex m-3 justify-content-end">
                 <a href="{% url 'productsApp:update_product_view' product.id %}" type="button" class="btn btn-dark me-2">Edit </a>

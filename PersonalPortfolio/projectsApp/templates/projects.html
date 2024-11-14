@@ -4,9 +4,10 @@
 
 {% block main %}
 <main>
-    <h1 class="display-6 text-center special-color pt-2">Projects</h1>
+    <h1 class="display-6 text-center special-color pt-5 mt-5">Projects</h1>
     <hr class="special-color2" style="width:15%;margin: 0 auto;">
-    <div class="container row row-cols-1 row-cols-lg-3 p-5 m-5">
+    <div class="mt-5">
+        <div class="row row-cols-1 row-cols-sm-3 g-5 ps-5 ms-5 pe-5 me-5">
         {% for project in projects %}
         <div class="col">
             <a href="{% url 'projectsApp:project_details_view' project.id %}" class="text-decoration-none ">
@@ -24,6 +25,7 @@
             </a>
         </div>
         {% endfor %}
+    </div>
     </div>
 </main>
 {% endblock %}
