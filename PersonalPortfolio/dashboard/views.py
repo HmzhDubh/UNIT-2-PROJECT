@@ -36,21 +36,28 @@ def dashboard_view(request: HttpRequest):
 
     # filter both photos categories and project types
     if 'category' in request.GET and request.GET['data'] == 'Photos':
-        photos = Photo.objects.filter(category=request.GET['category'])
+        if request.GET['category'] != 'all':
+            photos = Photo.objects.filter(category=request.GET['category'])
 
     elif 'category' in request.GET and request.GET['data'] == 'Projects':
-        projects = Project.objects.filter(type=request.GET['category'])
+        if request.GET['category'] != 'all':
+            projects = Project.objects.filter(type=request.GET['category'])
 
-    elif 'category' in request.GET and request.GET['data'] == 'Projects':
-        products = Product.objects.filter(type=request.GET['category'])
+    elif 'category' in request.GET and request.GET['data'] == 'Products':
+        if request.GET['category'] != 'all':
+            products = Product.objects.filter(type=request.GET['category'])
 
     elif 'category' in request.GET and request.GET['data'] == 'Messages':
-        if request.GET['category'] == True or request.GET['category'] == False:
-            messages = Contact.objects.filter(is_viewed=request.GET['category'])
-        else:
-            print(type(request.GET['category']))
+
+        if request.GET['category'] == 'viewed':
+
+            messages = Contact.objects.filter(is_viewed=True)
+        elif request.GET['category'] == 'not_viewed':
+            messages = Contact.objects.filter(is_viewed=False)
+
     elif 'category' in request.GET and request.GET['data'] == 'Requests':
-        requests = Contact.objects.filter(type=request.GET['category'])
+        if request.GET['category'] != 'all':
+            requests = Request.objects.filter(type=request.GET['category'])
 
     # Separate each of the models in different tables
     if 'data' in request.GET:
