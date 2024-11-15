@@ -1,25 +1,322 @@
-<header>
-    <div class="sticky-top ">
-        <div class="container-fluid">
-            <div class="d-flex justify-content-between align-items-center m-4 p-2">
-                <div class="d-flex align-items-center ms-5 ps-5">
-                    <a class="brand text-decoration-none align-items-center h1 special-color" href="/">HmzH</a>
-                    <h6 class="ps-3 special-color">Photographer / Developer</h6>
-                </div>
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block main %}
+<main class="container-fluid px-3 px-md-4 py-4">
 
-                <div class="d-flex align-items-center justify-content-center h5 special-color">
-                    <nav class="navbar d-flex gap-3">
-                        <a href="{% url 'projectsApp:projects_view' %}" class="nav-link {% if request.resolver_match.view_name == 'projectsApp:projects_view' %}active{% endif %}">Projects</a>
-                        <a href="{% url 'galleryApp:photos_view' %}" class="nav-link {% if request.resolver_match.view_name == 'galleryApp:photos_view' %}active{% endif %}">Photo Gallery</a>
-                        <a href="{% url 'main:expertise_view' %}" class="nav-link {% if request.resolver_match.view_name == 'main:expertise_view' %}active{% endif %}">Expertise</a>
-                        <a href="{% url 'productsApp:products_view' %}" class="nav-link {% if request.resolver_match.view_name == 'productsApp:products_view' %}active{% endif %}">Products</a>
-                    </nav>
+    <h1 class="display-6 text-center special-color pt-2">Dashboard</h1>
+    <hr class="special-color2" style="width:15%;margin: 0 auto;">
 
-                    <a href="{% url 'main:contact_view' %}" class="btn ms-4 special-color special-rounded-button">
-                        Get In Touch Now <span class="get-started-arrow">↗</span>
-                    </a>
-                </div>
+    <div class=" p-5 d-flex">
+        <div class="col h-100 pe-2">
+            <div class="nav-bar p-3 p-md-4 shadow rounded bg-light">
+                <form class="text-center flex-md-column gap-2 justify-content-center flex-wrap" action="{% url 'dashboard:dashboard_view' %}" method="get">
+                    <button type="submit" name='data'  value="All" class=" m-1 btn special-color {% if request.GET.data == 'All' %} special-button {% else %}btn-light{% endif %}"> All </button>
+                    <button type="submit" name='data' value="Messages" class=" m-1 special-color btn {% if request.GET.data == 'Messages' %} special-button {% else %}btn-light{% endif %}"> Messages </button>
+                    <button type="submit" name='data'  value="Requests" class=" m-1 special-color btn {% if request.GET.data == 'Requests' %} special-button {% else %}btn-light{% endif %}"> Requests </button>
+                    <button type="submit" name='data'  value="Projects" class=" m-1 special-color btn {% if request.GET.data == 'Projects' %} special-button {% else %}btn-light{% endif %}"> Projects </button>
+                    <button type="submit" name='data'  value="Products" class=" m-1 special-color btn {% if request.GET.data == 'Products' %} special-button {% else %}btn-light{% endif %}"> Products </button>
+                    <button type="submit" name='data' value="Photos" class=" m-1 btn special-color {% if request.GET.data == 'Photos' %} special-button {% else %}btn-light{% endif %}"> Photos </button>
+                </form>
+            </div> <!-- End of Models Buttons Div -->
+        </div>
+        <div class="container justify-content-end">
+
+            <div class="container d-flex justify-content-between mb-2">
+                <h3> {{request.GET.data}} Model</h3>
+                <a href="{% url 'main:home_view' %}" class="btn special-color special-button">Exit</a>
+            </div>
+            <div class="col dropdown shadow rounded p-4 d-flex justify-content-between">
+
+                <button class="btn special-button"><a class="text-decoration-none special-color" href="{% if request.GET.data == 'Photos' %} {% url 'galleryApp:add_photo_view' %} {% elif request.GET.data == 'Projects' %} {% url 'projectsApp:add_project_view' %} {% elif request.GET.data == 'Products' %} {% url 'productsApp:add_product_view' %} {% endif %}">ADD</a></button>
+
+                <div class="d-flex justify-content-end p-1"> <!-- Filtering/Categories Section -->
+
+                    <div class="d-flex gap-1">
+                        <!-- All models filtering  -->
+                        {% if request.GET.data == 'All' or not 'data' in request.GET %}
+                        <form class="d-flex" action="{% url 'dashboard:dashboard_view' %}" method="get" >
+                            <select name="order_by" class="form-select d-flex special-color special-button text-light">
+                                <option>Sort</option>
+                                <option value="newest" {% if request.GET.order_by == 'newest' %}selected{% endif %}> Newest </option>
+                                <option value="oldest" {% if request.GET.order_by == 'oldest' %}selected{% endif %}> Oldest </option>
+                            </select>
+                            <input type="submit" class="btn special-color special-button" value="Apply">
+                        </form>
+
+                        <!-- photos filtering -->
+                        {% elif request.GET.data == 'Photos' %}
+                        <form class="d-flex" action="{% url 'dashboard:dashboard_view' %}" method="get" >
+                            <input type="hidden" name='data' value="Photos">
+                            <select name="order_by" class="form-select d-flex special-color special-button text-light">
+                                <option> Order By</option>
+                                <option value="newest" {% if request.GET.order_by == 'newest' %}selected{% endif %}> Newest </option>
+                                <option value="oldest" {% if request.GET.order_by == 'oldest' %}selected{% endif %}> Oldest </option>
+                            </select>
+
+                            <select name="category" class="form-select d-flex special-color special-button text-light">
+                                <option>Photo Category</option>
+                                {% for cat, label in photo_cats %}
+
+                                <option value="{{ cat }}">{{ label }}</option>
+
+                                {% endfor %}
+
+                            </select>
+                            <input type="submit" class="btn special-color special-button" value="Apply">
+                        </form>
+
+                        <!-- Projects Filtering -->
+                        {% elif request.GET.data == 'Projects' %}
+                        <form class="d-flex" action="{% url 'dashboard:dashboard_view' %}" method="get" >
+                            <input type="hidden" name='data' value="Projects">
+                            <select name="category" class="form-select d-flex special-color special-button text-light">
+                                <option> Project Type </option>
+                                {% for cat, label in project_cats %}
+
+                                <option value="{{ cat }}">{{ label }}</option>
+
+                                {% endfor %}
+                            </select>
+                            <input type="submit" class="btn special-color special-button" value="Apply">
+                        </form>
+
+                        <!-- Products Filtering -->
+                        {% elif request.GET.data == 'Products' %}
+                        <form class="d-flex" action="{% url 'dashboard:dashboard_view' %}" method="get" >
+                            <input type="hidden" name='data' value="Products">
+                            <select name="order_by" class="form-select d-flex special-color special-button text-light">
+                                <option>Sort</option>
+                                <option value="newest" {% if request.GET.order_by == 'newest' %}selected{% endif %}> Newest </option>
+                                <option value="oldest" {% if request.GET.order_by == 'oldest' %}selected{% endif %}> Oldest </option>
+                            </select>
+                            <select name="category" class="form-select d-flex special-color special-button text-light">
+                                <option> Product Type </option>
+                                {% for cat, label in product_cat %}
+
+                                <option value="{{ cat }}">{{ label }}</option>
+
+                                {% endfor %}
+                            </select>
+                            <input type="submit" class="btn special-color special-button" value="Apply">
+                        </form>
+
+                        <!-- Requests Filtering -->
+                        {% elif request.GET.data == 'Requests' %}
+                        <form class="d-flex" action="{% url 'dashboard:dashboard_view' %}" method="get" >
+                            <input type="hidden" name='data' value="Requests">
+                            <select name="order_by" class="form-select d-flex special-color special-button text-light">
+                                <option>Sort</option>
+                                <option value="newest" {% if request.GET.order_by == 'newest' %}selected{% endif %}> Newest </option>
+                                <option value="oldest" {% if request.GET.order_by == 'oldest' %}selected{% endif %}> Oldest </option>
+                            </select>
+                            <select name="category" class="form-select d-flex special-color special-button text-light">
+                                <option> Request Type </option>
+                                {% for cat, label in product_cat %}
+
+                                <option value="{{ cat }}">{{ label }}</option>
+
+                                {% endfor %}
+                            </select>
+                            <input type="submit" class="btn special-color special-button" value="Apply">
+                        </form>
+
+                        <!-- Massages Filtering -->
+                        {% elif request.GET.data == 'Messages' %}
+                        <form class="d-flex" action="{% url 'dashboard:dashboard_view' %}" method="get" >
+                            <input type="hidden" name='data' value="Messages">
+                            <select name="order_by" class="form-select d-flex special-color special-button text-light">
+                                <option> Order By</option>
+                                <option value="newest" {% if request.GET.order_by == 'newest' %}selected{% endif %}> Newest </option>
+                                <option value="oldest" {% if request.GET.order_by == 'oldest' %}selected{% endif %}> Oldest </option>
+                            </select>
+                            <select name="category" class="form-select d-flex special-color special-button text-light">
+                                <option> Category</option>
+
+                                <option value="True">Viewed</option>
+                                <option value="False">Not Viewed</option>
+
+                            </select>
+                            <input type="submit" class="btn special-color special-button" value="Apply">
+                        </form>
+                        {% endif %}
+
+                    </div>
+                </div> <!-- end of Categories/Filtering Section -->
+
+            </div>
+            <div class="container shadow rounded p-4 mt-3">
+
+                {% if messages %}
+
+                <h5 class="special-color">Messages</h5>
+                <table class="table table-hover ">
+                    <thead class="text-center">
+                    <th scope="col">#</th>
+                    <th scope="col">Sender</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Message</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                    </thead>
+                    <tbody class="table-group-divider text-center">
+                    {% for message in messages %}
+                    <tr>
+                        <th scope="row">{{message.id}}</th>
+                        <td>{{message.first_name}} {{message.last_name}}</td>
+                        <td>{{message.email}}</td>
+                        <td> {{message.subject}}</td>
+                        <td>{{message.created_at}}</td>
+                        <td>{% if message.is_viewed %} Viewed {% else %} Not Viewed {% endif %}</td>
+                        <td class="text-end pe-1  gap-1">
+                            <a href="{% url 'main:message_details_view' message.id %}" class="btn {% if message.is_viewed %} btn-success {% else %} btn-info {% endif %}"><span class="material-symbols-outlined">visibility</span></a>
+                            <a href="{% url 'main:delete_message_view' message.id %}" class="btn btn-danger"><span class="material-symbols-outlined"><span class="material-symbols-outlined">delete</span></span></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                {% endif %}
+
+                {% if requests %}
+
+                <h5 class="special-color">Requests</h5>
+                <table class="table table-hover ">
+                    <thead class="text-center">
+                    <th scope="col">#</th>
+                    <th scope="col">Client Name</th>
+                    <th scope="col">Client Email</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">quantity</th>
+                    <th scope="col">Order Date</th>
+                    <th scope="col" class="text-center pe-5">Actions</th>
+
+
+                    </thead>
+                    <tbody class="table-group-divider text-center">
+                    {% for request in requests %}
+                    <tr>
+                        <th scope="row">{{request.id}}</th>
+                        <td>{{request.client_name}}</td>
+                        <td> {{request.client_email}}</td>
+                        <td> {{request.title}}</td>
+                        <td> {{request.quantity}}</td>
+                        <td>{{request.ordered_at}}</td>
+                        <td class="text-end pe-1  gap-1">
+                            <a href="{% url 'productsApp:request_details_view' request.id %}" class="btn btn-success"><span class="material-symbols-outlined">visibility</span></a>
+                            <a href="{% url 'productsApp:delete_request_view' request.id %}" class="btn btn-danger "><span class="material-symbols-outlined">delete</span></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                {% endif %}
+                {% if projects %}
+
+                <h5 class="special-color">Projects</h5>
+                <table class="table table-hover ">
+                    <thead class="text-center">
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Status</th>
+                    <th scope="col" style="width: 30%;">Link</th>
+                    <th scope="col">Actions</th>
+
+
+                    </thead>
+                    <tbody class="table-group-divider text-center">
+                    {% for project in projects %}
+                    <tr>
+                        <th scope="row">{{project.id}}</th>
+                        <td>{{project.title}}</td>
+                        <td> {{project.type}}</td>
+                        <td>{% if project.status %} Complete {% else %} In Progress {% endif %}</td>
+                        <td>{{ project.link }}</td>
+                        <td class="text-end pe-1  gap-1">
+                            <a href="{% url 'projectsApp:project_details_view' project.id %}" class="btn btn-success"><span class="material-symbols-outlined">visibility</span></a>
+                            <a href="{% url 'projectsApp:update_project_view' project.id %}" class="btn btn-warning "><span class="material-symbols-outlined">edit</span></a>
+                            <a href="{% url 'projectsApp:delete_project_view' project.id %}" class="btn btn-danger "><span class="material-symbols-outlined">delete</span></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                {% endif %}
+
+                {% if products %}
+
+                <h5 class="special-color">Products</h5>
+                <table class="table table-hover ">
+                    <thead class="text-center">
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">type</th>
+                    <th scope="col">quantity</th>
+                    <th scope="col">Creation Date</th>
+                    <th scope="col" class="pe-5">Actions</th>
+
+
+                    </thead>
+                    <tbody class="table-group-divider text-center">
+                    {% for product in products %}
+                    <tr>
+                        <th scope="row">{{product.id}}</th>
+                        <td>{{product.title}}</td>
+                        <td> {{product.type}}</td>
+                        <td> {{product.quantity}}</td>
+                        <td>{{product.created_at}}</td>
+                        <td class="text-end pe-1  gap-1">
+                            <a href="{% url 'productsApp:product_details_view' product.id %}" class="btn btn-success"><span class="material-symbols-outlined">visibility</span></a>
+                            <a href="{% url 'productsApp:update_product_view' product.id %}" class="btn btn-warning "><span class="material-symbols-outlined">edit</span></a>
+                            <a href="{% url 'productsApp:delete_product_view' product.id %}" class="btn btn-danger "><span class="material-symbols-outlined">delete</span></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                {% endif %}
+
+                {% if photos %}
+
+                <h5 class="special-color">Photos</h5>
+                <table class="table table-hover">
+                    <thead class="text-center">
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col" style="width:20%;">About</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Date</th>
+                    <th class="text-center"> Actions </th>
+                    </thead>
+                    <tbody class="table-group-divider text-center">
+                    {% for photo in photos %}
+                    <tr>
+                        <th scope="row">{{photo.id}}</th>
+                        <td>{{photo.title}}</td>
+                        <td>{{photo.about}}</td>
+                        <td>{{photo.category}}</td>
+                        <td>{{photo.photo_location}}</td>
+                        <td>{{photo.captured_at}}</td>
+                        <td class="text-end pe-1  gap-1">
+                            <a href="{% url 'galleryApp:photo_details_view' photo.id %}" class="btn btn-success"><span class="material-symbols-outlined">visibility</span></a>
+                            <a href="{% url 'galleryApp:update_photo_view' photo.id %}" class="btn btn-warning"><span class="material-symbols-outlined">edit</span></a>
+                            <a href="{% url 'galleryApp:delete_photo_view' photo.id %}" class="btn btn-danger"><span class="material-symbols-outlined">delete</span></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                {% endif %}
+
             </div>
         </div>
     </div>
-</header>
+</main>
+{% endblock %}

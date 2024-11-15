@@ -11,4 +11,5 @@ urlpatterns = [
     path('message/<message_id>/delete/', views.delete_message_view, name='delete_message_view'),
     path('testimonial/', views.testimonial_view, name='testimonial_view'),
     path('expertise/', views.expertise_view, name='expertise_view'),
+
 ]
