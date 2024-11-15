@@ -74,18 +74,25 @@ def requests_view(request:HttpRequest):
     return request
 
 
-def create_request_view(request: HttpRequest):
+def create_request_view(request: HttpRequest, product_id):
+
+    product = Product.objects.get(pk=product_id)
 
     if request.method == "POST":
         request_form = RequestForm(request.POST)
         if request_form.is_valid():
             request_form.save()
-            redirect('main:home_view')
+            product_quantity = int(product.quantity)
+            product_quantity -= int(request.POST['quantity'])
+            product.quantity = product_quantity
+            product.save()
+            print("update quantity of product", product.quantity)
+            return redirect('main:home_view')
         else:
             print('Form is not valid')
             print(request_form.errors)
 
-    request = render(request, 'new_request.html', context={'request_types': Request.RequestType.choices})
+    request = render(request, 'new_request.html', context={'product': product,'request_types': Request.RequestType.choices})
     return request
 
 

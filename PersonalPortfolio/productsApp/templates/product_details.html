@@ -25,8 +25,7 @@
             <h6 class="pt-3">Product Quantity: {{ product.quantity }} </h6>
 
             <div class="container d-flex m-3 justify-content-end">
-                <a href="{% url 'productsApp:update_product_view' product.id %}" type="button" class="btn btn-dark me-2">Edit </a>
-                <a href="{% url 'productsApp:delete_product_view' product.id %}" type="button" class="btn btn-danger">Remove </a>
+                <a class="special-bg-color rounded p-2 text-decoration-none special-color2 position-sticky animate-bounce ms-5" href="{% url 'productsApp:create_request_view' product.id %}">Request The Product</a>
             </div>
         </div>
 

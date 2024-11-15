@@ -8,45 +8,52 @@
     <hr class="special-color2" style="width:19%;margin: 0 auto;">
     <div class="container p-5">
         <div class="row row-cols-1 row-cols-md-2 g-5 h-100 justify-content-center">
-            <div class="col">
-                <h1>Add New Request</h1>
-                <p>Complete Request Information Bellow</p>
-                <form action="{% url 'productsApp:create_request_view' %}" method="post" enctype="multipart/form-data">
+            <div class="col special-color">
+
+                <div class="shadow rounded p-5 special-color2 text-center">
+                    <h4>Product Information: </h4><br>
+                    <h2>{{product.type}}</h2>
+                    <p>{{product.title}}</p>
+                    <p>{{product.description}}</p>
+
+                </div>
+                <div class="shadow rounded p-5">
+                <h4 class="text-center">Complete Your Information</h4>
+                <form action="{% url 'productsApp:create_request_view' product.id %}" method="post">
                     {% csrf_token %}
+                    <input type="hidden" name="title" value="{{product.title}}">
+                    <input type="hidden" name="description" value="{{product.description}}">
+                    <input type="hidden" name="type" value="{{product.type}}">
                     <div class="col">
                         <div class="col">
-                            <div class="form-outline">
-                                <label class="form-label" for="title">Request Title</label>
-                                <input type="text" id="title" name="title" class="form-control" placeholder="Programming Project" required/>
+                            <div class="form-outline pt-4">
+                                <label class="form-label" for="name">Full Name</label>
+                                <input type="text" id="name" name="client_name" class="form-control" placeholder="hmzh helal" required/>
                             </div>
                         </div>
                         <div class="col">
-                            <div class="form-outline">
-                                <label class="form-label" for="description">Describe The Request</label>
-                                <input type="text" id="description" name="description" class="form-control" placeholder="A Python CLI app that..." required/>
+                            <div class="form-outline pt-4">
+                                <label class="form-label" for="email">Email</label>
+                                <input type="email" id="email" name="client_email" class="form-control" placeholder="examble@gmail.com" required/>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col form-outline mb-4">
-                        <label class="form-label" for="category">Request Type</label>
-                        <select class="form-select" id="category" name="type" required>
-                            {% for cat, label in request_types %}
-                            <option value="{{ cat }}">{{ label }}</option>
-                            {% endfor  %}
-                        </select>
-                    </div>
-
-                    <div class="quantity">
-                        <label class="input-group-text bg-dark text-light" for="quantity">Quantity</label>
-                        <input id="quantity" type="number" max="5" name="quantity">
+                        <div class="quantity text-center p-4">
+                            <label class="form-label pe-2" for="quantity">Quantity</label>
+                            <input id="quantity" type="number" class="border-0 shadow rounded" max="{{product.quantity}}" name="quantity">
+                        </div>
+                        <div class="quantity text-center p-4 align-items-center justify-content-center">
+                            <label class="form-label pe-2" for="note">Note</label>
+                            <textarea id="note" class="border-0 shadow rounded" name="client_note"></textarea>
+                        </div>
                     </div>
 
                     <div class="col d-grid">
-                        <button type="submit" class="btn btn-success btn-block p-2 mb-4" >Make Request</button>
+                        <button type="submit" class="btn special-bg-color special-color2 btn-block p-2 mb-4" >Make Request</button>
                     </div>
 
                 </form>
+                </div>
             </div>
 
         </div>

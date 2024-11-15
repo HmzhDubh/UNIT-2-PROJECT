@@ -23,6 +23,7 @@ class Request(models.Model):
 
     class RequestType(models.TextChoices):
 
+        preset_filter = 'Preset Filter'
         photo_session = 'Photo Session'
         programming_project = 'Programming Project'
         consultant = 'Consultant'
@@ -32,3 +33,7 @@ class Request(models.Model):
     type = models.CharField(max_length=50, choices=RequestType.choices)
     quantity = models.SmallIntegerField(default=1)
     ordered_at = models.DateTimeField(auto_now_add=True)
+    # Client information
+    client_name = models.CharField(max_length=100, default='none')
+    client_email = models.CharField(max_length=100, default='none')
+    client_note = models.TextField(default='none')
