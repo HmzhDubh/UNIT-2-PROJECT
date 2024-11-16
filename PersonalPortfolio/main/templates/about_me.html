@@ -2,21 +2,140 @@
 {% block title %}HmzH{% endblock %}
 {% block additional_styles %}
 <style>
+        @import url("https://pro.fontawesome.com/releases/v6.0.0-beta1/css/all.css");
 
-   .tech-stack {
-       display: flex;
-       flex-wrap: wrap;
-       gap: 8px;
-   }
-   .badge {
-       display: inline-flex;
-       align-items: center;
-       justify-content: center;
-       align-items-center;
-       color: white;
-       text-decoration: none;
-       text-align: center;
-   }
+       .tech-stack {
+           display: flex;
+           flex-wrap: wrap;
+           gap: 8px;
+       }
+       .badge {
+           display: inline-flex;
+           align-items: center;
+           justify-content: center;
+           align-items-center;
+           color: white;
+           text-decoration: none;
+           text-align: center;
+       }
+       ol {
+        width: min(60rem, 90%);
+        margin-inline: auto;
+
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+
+        list-style: none;
+        counter-reset: cardnr;
+        justify-content: center;
+       }
+
+    .cards-list li {
+
+      --inlineP: 0.5rem;
+      --borderR: 4rem;
+
+      counter-increment: cardnr;
+      width: calc(10em - 0.5rem * 2);
+      display: grid;
+      grid-template:
+        "icon" var(--borderR)
+        "title"
+        "descr" 1fr;
+      margin-inline: var(--inlineP);
+      margin-bottom: calc(var(--borderR));
+      position: relative;
+    }
+    .cards-list li .icon,
+    .cards-list li .title,
+    .cards-list li .descr {
+      background: white;
+      padding-inline: 1rem;
+      padding-bottom: 1rem;
+    }
+    .cards-list li .icon,
+    .cards-list li .title {
+      color: var(--accent-color);
+      text-align: center;
+      padding-bottom: 0.5rem;
+    }
+
+    .cards-list li .title,
+    .cards-list li .descr {
+      filter: drop-shadow(0.125rem 0.125rem 0.075rem rgba(0, 0, 0, 0.25));
+    }
+    .cards-list li .icon {
+      grid-area: icon;
+      font-size: 2rem;
+      display: grid;
+      place-items: center;
+      border-radius: var(--borderR) 0 0 0;
+      position: relative;
+    }
+
+    .cards-list li .title {
+      grid-area: title;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    .cards-list li .descr {
+      grid-area: descr;
+      font-size: 0.85rem;
+      text-align: center;
+    }
+    .cards-list li .descr::before {
+      content: "";
+      width: 2rem;
+      height: 1.5rem;
+      position: absolute;
+      right: 1.5rem;
+      top: 100%;
+      background: inherit;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+    }
+
+    .cards-list li::after {
+      content: counter(cardnr, decimal-leading-zero);
+      position: absolute;
+      z-index: -1;
+
+      left: calc(var(--inlineP) * -1);
+      right: calc(var(--inlineP) * -1);
+      top: var(--borderR);
+      bottom: calc(var(--borderR) * -1);
+
+      display: flex;
+      align-items: flex-end;
+      background: var(--accent-color);
+      background-image: linear-gradient(
+        160deg,
+        rgba(255, 255, 255, 0.25),
+        transparent 25% 75%,
+        rgba(0, 0, 0, 0.25)
+      );
+      border-radius: 0 0 var(--borderR) 0;
+
+
+      padding: 1rem;
+      font-size: calc(var(--borderR) - 1rem * 2);
+      color: white;
+    }
+    .cards-list li::before {
+      content: "";
+      position: absolute;
+      height: var(--borderR);
+      top: calc(100% + var(--borderR) - 2px);
+      left: calc(var(--inlineP) * -1);
+      right: calc(var(--inlineP) * -1);
+      border-radius: 0 var(--borderR) 0 0;
+
+      background-image: linear-gradient(var(--accent-color), transparent 60%);
+      opacity: 0.5;
+      filter: blur(2px);
+    }
+
 
 </style>
 {% endblock %}
@@ -28,7 +147,7 @@
             <div class="container h-100 m-5 p-5">
                 <div class="intro text-center justify-content-center">
                     <h1 class="display-1 light-special-color big-header">I'm Hmzh.</h1>
-                    <h4 class="special-color2">Developer and Photographer.</h4>
+<!--                    <h4 class="special-color2">Developer and Photographer.</h4>-->
                 </div> <!-- End of Introduction -->
 
                 <div class="pt-5 align-items-center">
@@ -49,115 +168,85 @@
                     I am interested in photography, and using Editing tools such as Lightroom and Photoshop. I have been working on several projects and applications,
                     I participated in developing <a class="text-decoration-none special-color" href="/projects/project/9/details">"BreachyApp"</a> and <a class="text-decoration-none special-color" href="/projects/project/10/details">"EcoPlate"</a> Applications. To contact me for any purpose, <a class="text-decoration-none special-color" href="#contact">my contact information</a> are below. THANK YOU !.
                 </h4>
-                <ul></ul>
+                <div class="">
+                <h1 class="text-center special-color p-5">Experience</h1>
+                <ol class="cards-list">
+                    <li style="--accent-color:#0ba6a1">
+                        <div class="icon"><i class="fa-brands fa-python"></i></div>
+                        <div class="title">Python</div>
+                        <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, impedit?</div>
+                    </li>
+                    <li style="--accent-color:#530ba6">
+                        <div class="icon"><i class="fa-brands fa-java"></i></div>
+                        <div class="title">Java</div>
+                        <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, impedit?</div>
+                    </li>
+                    <li style="--accent-color:#a60b10">
+                        <div class="icon"><i class="fa-brands fa-html5"></i></div>
+                        <div class="title">HTML 5</div>
+                        <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+                    </li>
+                    <li style="--accent-color:#5da60b">
+                        <div class="icon"><i class="fa-brands fa-css3"></i></div>
+                        <div class="title">CSS 3</div>
+                        <div class="descr">Lorem ipsum dolor sit.</div>
+                    </li>
+                    <li style="--accent-color:#0ba6a1">
+                        <div class="icon"><i class="fa-brands fa-js"></i></div>
+                        <div class="title">Javascript</div>
+                        <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor laboriosam odio alias.</div>
+                    </li>
+                    <li style="--accent-color:#530ba6">
+                        <div class="icon"><i class="fa-brands fa-github"></i></div>
+                        <div class="title">GitHub</div>
+                        <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, impedit?</div>
+                    </li>
+                    <li style="--accent-color:#a60b10">
+                        <div class="icon"><i class="fa-brands fa-git"></i></div>
+                        <div class="title">GIT</div>
+                        <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+                    </li>
+                    <li style="--accent-color:#5da60b">
+                        <div class="icon"><i class="fa-brands fa-css3"></i></div>
+                        <div class="title">CSS 3</div>
+                        <div class="descr">Lorem ipsum dolor sit.</div>
+                    </li>
+                </ol>
+                </div>
             </div> <!-- End of about me -->
             <div id="skills" class="ps-5 ms-5 mt-5 pt-2">
-                <h2 class="light-special-color display-2 big-header">Technical Skills</h2>
+
+                <div class="d-flex align-items-center">
+                    <h2 class="light-special-color display-2 big-header">Technical Skills</h2>
+                </div>
+
                 <hr class="special-color2" style="width:460px">
                 <div class="row row-cols-1 row-cols-sm-5 g-5">
+                    {% for skill in skills %}
 
-                    <div class="w3-dark-grey">
-                        <p class="special-color2">Java And JavaScript</p>
+                    <div>
+                        <p class="special-color2">{{skill.skill}}</p>
                         <div class="progress">
-                            <div class="progress-bar special-bg-color" style="height:28px;width:80%"></div>
+                            <div class="progress-bar special-bg-color" style="width:{{skill.progress}}%">{{skill.progress}}%</div>
                         </div>
                     </div>
 
-                    <div class="">
-                        <p class="special-color2">Python</p>
-                        <div class="progress">
-                            <div class="progress-bar special-bg-color" style="height:28px;width:60%"></div>
-                        </div>
-                    </div>
+                    {% endfor %}
 
-                    <div class="w3-dark-grey">
-                        <p class="special-color2">web Development</p>
-                        <div class="progress">
-                            <div class="progress-bar special-bg-color" style="height:28px;width:80%"></div>
-                        </div>
-                    </div>
-
-                    <div class="w3-dark-grey">
-                        <p class="special-color2">Project Management</p>
-                        <div class="progress">
-                            <div class="progress-bar special-bg-color" style="height:28px;width:79%"></div>
-                        </div>
-                    </div>
-
-                    <div class="w3-dark-grey">
-                        <p class="special-color2">Cloud Computing</p>
-                        <div class="progress">
-                            <div class="progress-bar special-bg-color" style="height:28px;width:30%"></div>
-                        </div>
-                    </div>
-
-                    <div class="w3-dark-grey">
-                        <p class="special-color2">Back-End Development</p>
-                        <div class="progress">
-                            <div class="progress-bar special-bg-color" style="height:28px;width:40%"></div>
-                        </div>
-                    </div>
-
-                    <div class="w3-dark-grey">
-                        <p class="special-color2">Photography</p>
-                        <div class="progress">
-                            <div class="progress-bar special-bg-color" style="height:28px;width:90%"></div>
-                        </div>
-                    </div>
-
-                    <div class="w3-dark-grey">
-                        <p class="special-color2">Lightroom</p>
-                        <div class="progress">
-                            <div class="progress-bar special-bg-color" style="height:28px;width:90%"></div>
-                        </div>
-                    </div>
-
-                    <div class="w3-dark-grey">
-                        <p class="special-color2">Photoshop</p>
-                        <div class="progress ">
-                            <div class="progress-bar special-bg-color" style="height:28px;width:30%"></div>
-                        </div>
-                    </div>
                 </div>
             </div> <!-- End of about me -->
 
             <div id="tech-stack" class="ps-5 ms-5 pt-5 mt-5">
-                <h2 class="light-special-color display-2 big-header">Tech Stack</h2>
+                <div class="d-flex align-items-center">
+                    <h2 class="light-special-color display-2 big-header">Tech Stack</h2>
+                </div>
                 <hr class="special-color2" style="width:320px">
-
                 <div class="tech-stack pt-3">
-                    <a href="#" class="badge" style="background-color: #ED8B00;"><h6>Java</h6></a>
-                    <a href="#" class="badge" style="background-color: #E34F26;"><h6>HTML5</h6></a>
-                    <a href="#" class="badge" style="background-color: #1572B6;"><h6>CSS3</h6></a>
-                    <a href="#" class="badge" style="background-color: #121013;"><h6>Github Pages</h6></a>
-                    <a href="#" class="badge" style="background-color: #0072C6;"><h6>Azure</h6></a>
-                    <a href="#" class="badge" style="background-color: #039BE5;"><h6>Firebase</h6></a>
-                    <a href="#" class="badge" style="background-color: #000;"><h6>Flask</h6></a>
-                    <a href="#" class="badge" style="background-color: #02569B;"><h6>Flutter</h6></a>
-                    <a href="#" class="badge" style="background-color: #D42029;"><h6>Apache</h6></a>
-                    <a href="#" class="badge" style="background-color: #009639;"><h6>Nginx</h6></a>
-                    <a href="#" class="badge" style="background-color: #298729;"><h6>Gunicorn</h6></a>
-                    <a href="#" class="badge" style="background-color: #003545;"><h6>MariaDB</h6></a>
-                    <a href="#" class="badge" style="background-color: #316192;"><h6>Postgres</h6></a>
-                    <a href="#" class="badge" style="background-color: #4479A1;"><h6>MySQL</h6></a>
-                    <a href="#" class="badge" style="background-color: #00C4CC;"><h6>Canva</h6></a>
-                    <a href="#" class="badge" style="background-color: #F24E1E;"><h6>Figma</h6></a>
-                    <a href="#" class="badge" style="background-color: #657D8B;"><h6>Gimp</h6></a>
-                    <a href="#" class="badge" style="background-color: #31A8FF;"><h6>Adobe Lightroom</h6></a>
-                    <a href="#" class="badge" style="background-color: #161616;"><h6>CircleCI</h6></a>
-                    <a href="#" class="badge" style="background-color: #F05033;"><h6>Git</h6></a>
-                    <a href="#" class="badge" style="background-color: #121011;"><h6>GitHub</h6></a>
-                    <a href="#" class="badge" style="background-color: #0db7ed;"><h6>Docker</h6></a>
-                    <a href="#" class="badge" style="background-color: #0A0FFF;"><h6>Jira</h6></a>
-                    <a href="#" class="badge" style="background-color: #000000;"><h6>Prezi</h6></a>
-                    <a href="#" class="badge" style="background-color: #026AA7;"><h6>Trello</h6></a>
-                    <a href="#" class="badge" style="background-color: #000000;"><h6>Notion</h6></a>
-                    <a href="#" class="badge" style="background-color: #FF6C37;"><h6>Postman</h6></a>
-                    <a href="#" class="badge" style="background-color: #323330;"><h6>JavaScript</h6></a>
-                    <a href="#" class="badge" style="background-color: #777BB4;"><h6>PHP</h6></a>
-                    <a href="#" class="badge" style="background-color: #3670A0;"><h6>Python</h6></a>
-                    <a href="#" class="badge" style="background-color: #FFFFFF; color: #000;"><h6>OpenCV</h6></a>
-                    <a href="#" class="badge" style="background-color: #150458;"><h6>Pandas</h6></a>
+                    {% for tool in tools %}
+                        <a href="https://www.{{tool.tool}}.com" class="badge" style="background-color:{{tool.preferred_color}};">
+                            <h6 class="{% if tool.preferred_color == '#ffffff' %}special-color2{% endif %}">{{tool.tool}}</h6>
+                        </a>
+                    {% endfor %}
                 </div>
             </div> <!-- End of tech stack div -->
 
@@ -176,11 +265,8 @@
                         <a class="text-decoration-none special-color2" href="https://www.instagram.com/hhha.d" target="_blank"><p><i class="fa fa-instagram fa-fw w3-hover-opacity w3-text-white w3 w3-xxlarge w3-margin-right"></i> Instagram: @hhha.d</p></a>
                         <p><i class="fa fa-map-marker fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Jeddah, Saudi Arabia</p>
                     </div><br>
-
-
                 </div>
-
-            </div> <!-- End of about me -->
+            </div> <!-- End of contact me -->
 
         </div>
         <div class="row p-5 m-5"></div>

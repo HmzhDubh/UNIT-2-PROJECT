@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 from galleryApp.models import Photo
 from projectsApp.models import Project
-from main.models import Contact
+from main.models import Contact, TechStack, TechSkill
 from productsApp.models import Product, Request
 
 
@@ -16,6 +16,8 @@ def dashboard_view(request: HttpRequest):
     messages = Contact.objects.all()
     photos = Photo.objects.all()
     requests = Request.objects.all()
+    skills = TechSkill.objects.all()
+    tools = TechStack.objects.all()
 
     # order models as newest or oldest
     if 'order_by' in request.GET:
@@ -81,8 +83,15 @@ def dashboard_view(request: HttpRequest):
 
             return render(request, 'dashboard.html', context={'messages':messages})
 
+        elif request.GET['data'] == 'Skills':
+
+            return render(request, 'dashboard.html', context={'skills':skills})
+        elif request.GET['data'] == 'Tools':
+
+            return render(request, 'dashboard.html', context={'tools':tools})
+
     # return all models
-    request = render(request, 'dashboard.html', context={'messages': messages, 'projects': projects, 'products': products, 'photos': photos, 'requests': requests})
+    request = render(request, 'dashboard.html', context={'tools':tools, 'skills':skills, 'messages': messages, 'projects': projects, 'products': products, 'photos': photos, 'requests': requests})
 
     return request
 

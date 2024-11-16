@@ -11,3 +11,13 @@ class Contact(models.Model):
     message = models.TextField()
     is_viewed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
+
+class TechStack(models.Model):
+
+    tool = models.CharField(max_length=50)
+    preferred_color = models.CharField(max_length=50, default='E34F26')
+
+class TechSkill(models.Model):
+
+    skill = models.CharField(max_length=50)
+    progress = models.SmallIntegerField()

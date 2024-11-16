@@ -136,11 +136,12 @@
                             <li class="nav-item">
                                 <a class="nav-link special-color {% if request.resolver_match.view_name == 'galleryApp:photos_view' %}active{% endif %} slide-right" href="{% url 'galleryApp:photos_view' %}">Photo Gallery</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link special-color {% if request.resolver_match.view_name == 'main:expertise_view' %}active{% endif %} slide-right" href="{% url 'main:expertise_view' %}">Expertise</a>
-                            </li>
+
                             <li class="nav-item">
                                 <a class="nav-link special-color {% if request.resolver_match.view_name == 'productsApp:products_view' %}active{% endif %} slide-right" href="{% url 'productsApp:products_view' %}">Products</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link special-color {% if request.resolver_match.view_name == 'main:about_view' %}active{% endif %} slide-right" href="{% url 'main:about_view' %}">About Me</a>
                             </li>
                         </ul>
                         <a href="{% url 'main:contact_view' %}" class="btn special-bg-color2 special-color rounded-pill ms-md-3 slide-right">

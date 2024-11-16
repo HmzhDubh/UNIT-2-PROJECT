@@ -21,6 +21,9 @@
                         <button type="submit" name='data' value="Projects" class="list-group-item special-color btn {% if request.GET.data == 'Projects' %} special-button {% else %}btn-light{% endif %}">Projects</button>
                         <button type="submit" name='data' value="Products" class="list-group-item special-color btn {% if request.GET.data == 'Products' %} special-button {% else %}btn-light{% endif %}">Products</button>
                         <button type="submit" name='data' value="Photos" class="list-group-item btn special-color {% if request.GET.data == 'Photos' %} special-button {% else %}btn-light{% endif %}">Photos</button>
+
+                        <button type="submit" name='data' value="Skills" class="list-group-item btn special-color {% if request.GET.data == 'Skills' %} special-button {% else %}btn-light{% endif %}">Skills</button>
+                        <button type="submit" name='data' value="Tools" class="list-group-item btn special-color {% if request.GET.data == 'Tools' %} special-button {% else %}btn-light{% endif %}">Tools</button>
                     </form>
                 </div>
             </div>
@@ -37,9 +40,11 @@
                 <div class="shadow rounded p-3 mb-3">
                     <div class="d-flex flex-wrap gap-2 justify-content-between align-items-center">
                         <!-- Add Button -->
+                        {% if request.GET.data == 'Projects' or request.GET.data == 'Products' or request.GET.data == 'Photos'%}
                         <button class="btn special-button">
                             <a class="text-decoration-none special-color" href="{% if request.GET.data == 'Photos' %}{% url 'galleryApp:add_photo_view' %}{% elif request.GET.data == 'Projects' %}{% url 'projectsApp:add_project_view' %}{% elif request.GET.data == 'Products' %}{% url 'productsApp:add_product_view' %}{% endif %}">ADD</a>
                         </button>
+                        {% endif %}
 
                         <!-- Filters -->
                         <div class="d-flex justify-content-end p-1"> <!-- Filtering/Categories Section -->
@@ -151,6 +156,44 @@
                                     </select>
                                     <input type="submit" class="btn special-color special-button" value="Apply">
                                 </form>
+                                {% elif request.GET.data == 'Skills' %}
+                                <div class="dropdown ps-5 p-3">
+                                    <button type="button"  class="btn special-color special-bg-color2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">Add New Skill</button>
+
+                                    <form action="{% url 'main:add_skill_view' %}" method="post" class="dropdown-menu p-4">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="data" value="Skills">
+                                        <div class="mb-3">
+                                            <label for="skill" class="form-label">Tool</label>
+                                            <input type="text" class="form-control" name="skill" id="skill" placeholder="python">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="progress" class="form-label">Progress out of 100</label>
+                                            <input type="number" class="form-control" name="progress" id="progress" max=100 placeholder="90">
+                                        </div>
+
+                                        <button type="submit" id="liveAlertBtn" class="btn special-color special-bg-color2">Add Tool</button>
+                                        <!--                        <div id="liveAlertPlaceholder" class="position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 1080;"></div>-->
+                                    </form>
+                                </div>
+                                {% elif request.GET.data == 'Tools' %}
+                                <div class="dropdown ps-5 p-3">
+                                    <button type="button" class="btn special-color special-bg-color2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">Add New Tool</button>
+                                    <form action="{% url 'main:add_tool_view' %}" method="post" class="dropdown-menu p-4">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="data" value="Tools">
+                                        <div class="mb-3">
+                                            <label for="tool" class="form-label">Tool</label>
+                                            <input type="text" class="form-control" name="tool" id="tool" placeholder="python">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="preferred_color" class="form-label">Color Code</label>
+                                            <input type="color" class="form-control" name="preferred_color" id="preferred_color" placeholder="#fewe3d">
+                                        </div>
+
+                                        <button type="submit" class="btn special-color special-bg-color2">Add Tool</button>
+                                    </form>
+                                </div>
                                 {% endif %}
 
                             </div>
@@ -329,6 +372,59 @@
                                     <a href="{% url 'galleryApp:photo_details_view' photo.id %}" class="btn btn-success"><span class="material-symbols-outlined">visibility</span></a>
                                     <a href="{% url 'galleryApp:update_photo_view' photo.id %}" class="btn btn-warning"><span class="material-symbols-outlined">edit</span></a>
                                     <a href="{% url 'galleryApp:delete_photo_view' photo.id %}" class="btn btn-danger"><span class="material-symbols-outlined">delete</span></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                        {% endif %}
+
+                        {% if skills %}
+
+                        <h5 class="special-color">Skills</h5>
+                        <table class="table table-hover">
+                            <thead>
+                            <th scope="col">#</th>
+                            <th scope="col">Skill</th>
+                            <th scope="col">Progress</th>
+                            <th class="text-center"> Actions </th>
+                            </thead>
+                            <tbody class="table-group-divider">
+                            {% for skill in skills %}
+                            <tr>
+                                <th scope="row">{{skill.id}}</th>
+                                <td>{{skill.skill}}</td>
+                                <td>{{skill.progress}}</td>
+                                <td class="text-end pe-1  gap-1">
+
+                                    <a href="{% url 'main:delete_skill_view' skill.id %}" class="btn btn-danger"><span class="material-symbols-outlined">delete</span></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                        {% endif %}
+
+                        {% if tools %}
+
+                        <h5 class="special-color">Tools</h5>
+                        <table class="table table-hover">
+                            <thead>
+                            <th scope="col">#</th>
+                            <th scope="col">Tools</th>
+                            <th scope="col">Site</th>
+                            <th class="text-center"> Actions </th>
+                            </thead>
+                            <tbody class="table-group-divider">
+                            {% for tool in tools %}
+                            <tr>
+                                <th scope="row">{{tool.id}}</th>
+                                <td>{{tool.tool}}</td>
+                                <td>{{tool.preferred_color}}</td>
+                                <td class="text-end pe-1  gap-1">
+                                    <a href="{% url 'main:delete_tool_view' tool.id %}" class="btn btn-danger"><span class="material-symbols-outlined">delete</span></a>
                                 </td>
                             </tr>
                             {% endfor %}

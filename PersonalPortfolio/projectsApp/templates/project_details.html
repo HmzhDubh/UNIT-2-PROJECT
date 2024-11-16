@@ -24,10 +24,10 @@
             <h6 class="pt-3">Project Status: {% if project.status %} Complete {% else %} In-Progress {% endif %}</h6>
             <a class="pt-3" href="{{ project.link }}" target="_blank">Project Link</a>
 
-            <div class="container d-flex m-3 justify-content-end">
-                <a href="{% url 'projectsApp:update_project_view' project.id %}" type="button" class="btn btn-dark me-2">Edit </a>
-                <a href="{% url 'projectsApp:delete_project_view' project.id %}" type="button" class="btn btn-danger">Remove </a>
-            </div>
+<!--            <div class="container d-flex m-3 justify-content-end">-->
+<!--                <a href="{% url 'projectsApp:update_project_view' project.id %}" type="button" class="btn btn-success me-2">Like </a>-->
+<!--                <a href="{% url 'projectsApp:delete_project_view' project.id %}" type="button" class="btn btn-danger">Dislike </a>-->
+<!--            </div>-->
         </div>
 
     </div>

@@ -21,5 +21,5 @@ class RequestForm(forms.ModelForm):
             "quantity",
             "client_name",
             "client_email",
-            "client_note",
+
         ]
