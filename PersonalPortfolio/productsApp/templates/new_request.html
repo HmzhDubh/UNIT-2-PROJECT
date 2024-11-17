@@ -24,6 +24,7 @@
                     <input type="hidden" name="title" value="{{product.title}}">
                     <input type="hidden" name="description" value="{{product.description}}">
                     <input type="hidden" name="type" value="{{product.type}}">
+                    <input type="hidden" name="quantity" value=1>
                     <div class="col">
                         <div class="col">
                             <div class="form-outline pt-4">
@@ -38,10 +39,7 @@
                             </div>
                         </div>
 
-                        <div class="quantity text-center p-4">
-                            <label class="form-label pe-2" for="quantity">Quantity</label>
-                            <input id="quantity" type="number" class="border-0 shadow rounded" max="{{product.quantity}}" name="quantity">
-                        </div>
+
                         <div class="quantity text-center p-4 align-items-center justify-content-center">
                             <label class="form-label pe-2" for="note">Note</label>
                             <textarea id="note" class="border-0 shadow rounded" name="client_note"></textarea>
