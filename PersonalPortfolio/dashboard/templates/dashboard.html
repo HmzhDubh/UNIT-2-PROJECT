@@ -214,7 +214,7 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Sender</th>
                                     <th scope="col">Email</th>
-                                    <th scope="col">Message</th>
+                                    <th scope="col">Subject</th>
                                     <th scope="col">Date</th>
                                     <th scope="col">Status</th>
                                     <th scope="col" class="pe-5">Actions</th>
@@ -299,8 +299,8 @@
                                 <td>{{project.title}}</td>
                                 <td> {{project.type}}</td>
                                 <td>{% if project.status %} Complete {% else %} In Progress {% endif %}</td>
-                                <td>{{ project.link }}</td>
-                                <td class="text-end pe-1  gap-1">
+                                <td>{{ project.link|truncatechars:25 }}</td>
+                                <td class="text-end pe-1 gap-1">
                                     <a href="{% url 'projectsApp:project_details_view' project.id %}" class="btn btn-success"><span class="material-symbols-outlined">visibility</span></a>
                                     <a href="{% url 'projectsApp:update_project_view' project.id %}" class="btn btn-warning "><span class="material-symbols-outlined">edit</span></a>
                                     <a href="{% url 'projectsApp:delete_project_view' project.id %}" class="btn btn-danger "><span class="material-symbols-outlined">delete</span></a>
@@ -334,7 +334,7 @@
                                 <td> {{product.type}}</td>
                                 <td> {{product.quantity}}</td>
                                 <td>{{product.created_at}}</td>
-                                <td class="text-end pe-1  gap-1">
+                                <td class="text-end pe-1 gap-1">
                                     <a href="{% url 'productsApp:product_details_view' product.id %}" class="btn btn-success"><span class="material-symbols-outlined">visibility</span></a>
                                     <a href="{% url 'productsApp:update_product_view' product.id %}" class="btn btn-warning "><span class="material-symbols-outlined">edit</span></a>
                                     <a href="{% url 'productsApp:delete_product_view' product.id %}" class="btn btn-danger "><span class="material-symbols-outlined">delete</span></a>

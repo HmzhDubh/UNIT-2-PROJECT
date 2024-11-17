@@ -23,7 +23,7 @@ def contact_view(request:HttpRequest):
         contact_form = ContactForm(request.POST)
         if contact_form.is_valid():
             contact_form.save()
-            redirect('main:home_view')
+            return render(request, 'page_success.html')
         else:
             print('Form is not valid')
             print(contact_form.errors)

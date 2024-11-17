@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <style>
@@ -119,6 +120,8 @@
 
 </head>
 <body style="background-color:#f1faee">
+    {% block header %}
+
     <header>
         <div class="sticky-top">
             <div class="container">
@@ -153,7 +156,7 @@
         </div>
     </header>
 
-
+    {% endblock %}
     {% block main %}
 
     {% endblock %}
@@ -180,19 +183,18 @@
                             <h5>Pages</h5>
                             <p><a href="{% url 'projectsApp:projects_view' %}">Projects</a></p>
                             <p><a href="{% url 'galleryApp:photos_view' %}">Gallery</a></p>
-                            <p><a href="{% url 'main:expertise_view' %}">Expertise</a></p>
+
                         </div>
                         <div class="col">
                             <h5>Products</h5>
                             <p><a href="{% url 'productsApp:products_view' %}">View Products and Services</a></p>
-                            <p><a href="{% url 'productsApp:products_view' %}">Try Out Product Now</a></p>
                             <p><a href="{% url 'dashboard:dashboard_view' %}">Dashboard</a></p>
                         </div>
                         <div class="col">
                             <h5>Contact Us</h5>
-                            <p><a href="{% url 'main:contact_view' %}">Send a message</a></p>
-                            <p><a href="/">View Messages</a></p>
-                            <p><a href="{% url 'main:testimonial_view' %}">Testimonial</a></p>
+                            <p><a href="{% url 'main:contact_view' %}">Send me a message</a></p>
+
+
                         </div>
                     </div>
                 </div>

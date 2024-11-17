@@ -76,7 +76,7 @@
                     </div>
                     <div class="d-flex gap-3">
                         <a href="{% url 'main:about_view' %}" class="btn opacity-90 special-bg-color special-color2 ">Read About Me</a>
-<!--                        <a href="{% url 'galleryApp:photos_view' %}" class="btn opacity-90 special-bg-color2 special-color ">Visit My Gallery</a>-->
+<!--                        <a href="{% url 'main:testimonial_view' %}" class="btn opacity-90 special-bg-color2 special-color ">Visit My Gallery</a>-->
 <!--                        <a href="{% url 'productsApp:products_view' %}" class="btn opacity-90 special-bg-color2 special-color ">Try Our Products</a>-->
                     </div>
                 </div>
@@ -107,7 +107,7 @@
                     <a href="{% url 'projectsApp:projects_view' %}">
                         <img src="{% static 'images/projects.jpg' %}" class="d-block w-100" style="height: 550px;" alt="proj">
                     </a>
-                    <h1 class="big-header special-color m-3">Projects</h1>
+                    <h1 class="big-header special-color m-3">Recent Projects</h1>
                 </div>
                 {% for project in projects %}
                 <div class="carousel-item ">

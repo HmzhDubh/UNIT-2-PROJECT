@@ -87,7 +87,7 @@ def create_request_view(request: HttpRequest, product_id):
             product.quantity = product_quantity
             product.save()
             print("update quantity of product", product.quantity)
-            return redirect('main:home_view')
+            return render(request, 'page_success.html')
         else:
             print('Form is not valid')
             print(request_form.errors)
